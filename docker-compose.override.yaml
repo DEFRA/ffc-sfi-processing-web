@@ -32,6 +32,6 @@ services:
         volumes:
           - postgres_data:/var/lib/postgresql/data
     
-    volumes:
-      redis_data:
-      postgres_data: {}
+  volumes:
+    redis_data:
+    postgres_data: {}
