@@ -7,7 +7,7 @@ services:
       target: production
     image: ffc-sfi-processing-web
     container_name: ffc-sfi-processing-web
-    depends_on:      
+    depends_on:
       - ffc-sfi-processing-web-postgres
     environment:
       APPINSIGHTS_CLOUDROLE: ffc-sfi-processing-web-local
@@ -32,8 +32,8 @@ services:
       POSTGRES_USERNAME: ${POSTGRES_SCHEMA_USERNAME:-postgres}
       USE_AGREEMENT_CALCULATOR: "false"
       OS_MAP_API_KEY: ${OS_MAP_API_KEY}
-  
-  ffc-sfi-apply-web-postgres:
+
+  ffc-sfi-processing-web-postgres:
     image: postgres:11.4-alpine
     environment:
       POSTGRES_DB: ffc_sfi_processing_web
