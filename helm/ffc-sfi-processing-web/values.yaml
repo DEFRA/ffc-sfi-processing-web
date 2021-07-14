@@ -9,6 +9,10 @@ labels: {}
 containerConfigMap:
   name: ffc-sfi-processing-web-config-map
 
+containerSecret:
+  name: ffc-sfi-processing-web-container-secret
+  type: Opaque
+
 deployment:
   restartPolicy: Always
   priorityClassName: default
@@ -21,7 +25,11 @@ container:
   requestCpu: 10m
   limitMemory: 40Mi
   limitCpu: 40m
-  port: 3000
+  port: 3006
+  redisHostname: redis-redis-ha.default
+  redisPassword: redis
+  redisPort: 6379
+  redisPartition: ffc-sfi-processing-web
 
 postgresService:
   postgresDb: ffc_sfi_processing_web

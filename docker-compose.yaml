@@ -10,28 +10,12 @@ services:
     depends_on:
       - ffc-sfi-processing-web-postgres
     environment:
-      APPINSIGHTS_CLOUDROLE: ffc-sfi-processing-web-local
-      APPINSIGHTS_INSTRUMENTATIONKEY: ${APPINSIGHTS_INSTRUMENTATIONKEY}
-      MESSAGE_QUEUE_HOST: ${MESSAGE_QUEUE_HOST:-notset}
-      MESSAGE_QUEUE_PASSWORD: ${MESSAGE_QUEUE_PASSWORD:-notset}
-      MESSAGE_QUEUE_USER: ${MESSAGE_QUEUE_USER:-notset}
-      ELIGIBILITY_TOPIC_ADDRESS: ${ELIGIBILITY_TOPIC_ADDRESS:-notset}
-      STANDARDS_TOPIC_ADDRESS: ${STANDARDS_TOPIC_ADDRESS:-notset}
-      VALIDATE_TOPIC_ADDRESS: ${VALIDATE_TOPIC_ADDRESS:-notset}
-      CALCULATE_TOPIC_ADDRESS: ${CALCULATE_TOPIC_ADDRESS:-notset}
-      SUBMIT_TOPIC_ADDRESS: ${SUBMIT_TOPIC_ADDRESS:-notset}
-      WITHDRAW_TOPIC_ADDRESS: ${WITHDRAW_TOPIC_ADDRESS:-notset}
-      AGREEMENT_CALCULATOR_ENDPOINT: http://ffc-sfi-agreement-calculator:3003
-      SITI_AGRI_ENDPOINT: http://ffc-sfi-apply-api:3001
-      COOKIE_PASSWORD: cookiecookiecookiecookiecookiecookie
       POSTGRES_DB: ffc_sfi_processing_web
       POSTGRES_HOST: ${POSTGRES_HOST:-ffc-sfi-processing-web-postgres}
       POSTGRES_PASSWORD: ${POSTGRES_SCHEMA_PASSWORD:-ppp}
       POSTGRES_PORT: 5432
       POSTGRES_SCHEMA_NAME: ${POSTGRES_SCHEMA_NAME:-public}
       POSTGRES_USERNAME: ${POSTGRES_SCHEMA_USERNAME:-postgres}
-      USE_AGREEMENT_CALCULATOR: "false"
-      OS_MAP_API_KEY: ${OS_MAP_API_KEY}
 
   ffc-sfi-processing-web-postgres:
     image: postgres:11.4-alpine

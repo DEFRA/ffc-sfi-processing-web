@@ -3,20 +3,6 @@
 data:
   NODE_ENV: {{ quote .Values.environment }}
   PORT: {{ quote .Values.container.port }}
-  APPINSIGHTS_CLOUDROLE: {{ quote .Values.name }}
-  {{- if .Values.container.googleTagManagerKey }}
-  GOOGLE_TAG_MANAGER_KEY: {{ quote .Values.container.googleTagManagerKey }}
-  {{- end }}
-  MESSAGE_QUEUE_HOST: {{ quote .Values.container.messageQueueHost }}
-  ELIGIBILITY_TOPIC_ADDRESS: {{ quote .Values.container.eligibilityTopicAddress }}
-  STANDARDS_TOPIC_ADDRESS: {{ quote .Values.container.standardsTopicAddress }}
-  VALIDATE_TOPIC_ADDRESS: {{ quote .Values.container.validateTopicAddress }}
-  CALCULATE_TOPIC_ADDRESS: {{ quote .Values.container.calculateTopicAddress }}
-  SUBMIT_TOPIC_ADDRESS: {{ quote .Values.container.submitTopicAddress }}
-  WITHDRAW_TOPIC_ADDRESS: {{ quote .Values.container.withdrawTopicAddress }}
-  AGREEMENT_CALCULATOR_ENDPOINT: {{ quote .Values.container.agreementCalculatorEndpoint }}
-  SITI_AGRI_ENDPOINT: {{ quote .Values.container.sitiAgriEndpoint }}
-  USE_AGREEMENT_CALCULATOR: {{ quote .Values.container.useAgreementCalculator }}
   {{- if .Values.container.redisHostname }}
   REDIS_HOSTNAME: {{ quote .Values.container.redisHostname }}
   {{- end }}
@@ -26,7 +12,4 @@ data:
   POSTGRES_HOST: {{ quote .Values.postgresService.postgresHost }}
   POSTGRES_PORT: {{ quote .Values.postgresService.postgresPort }}
   POSTGRES_SCHEMA_NAME: {{ quote .Values.postgresService.postgresSchema }}
-  {{- if .Values.container.osMapApiKey }}
-  OS_MAP_API_KEY: {{ quote .Values.container.osMapApiKey }}
-  {{- end }}
 {{- end -}}
