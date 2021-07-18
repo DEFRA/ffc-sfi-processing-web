@@ -28,6 +28,12 @@ const mqSchema = joi.object({
   validateTopic: {
     name: joi.string().default('ffc-sfi-agreement-validate'),
     address: joi.string().default('ffc-sfi-agreement-validate')
+  },
+  validationResponseSubscription: {
+    name: joi.string().default('ffc-sfi-agreement-validate-response'),
+    address: joi.string().default('ffc-sfi-agreement-validate-response'),
+    topic: joi.string(),
+    type: joi.string()
   }
 })
 const mqConfig = {

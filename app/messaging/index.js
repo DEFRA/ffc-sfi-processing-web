@@ -17,7 +17,7 @@ async function start () {
   await caseReceiver.subscribe()
 
   const validationAction = message => processValidationMessage(message, validationReceiver)
-  validationReceiver = new MessageReceiver(config.validationSubscription, validationAction)
+  validationReceiver = new MessageReceiver(config.validationResponseSubscription, validationAction)
   await validationReceiver.subscribe()
 
   console.info('Ready to receive messages')
