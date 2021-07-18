@@ -15,10 +15,10 @@ azureIdentity:
   resourceID: not-a-real-resourceID
 
 containerConfigMap:
-  name: ffc-sfi-agreement-web-config-map
+  name: ffc-sfi-processing-web-config-map
 
 containerSecret:
-  name: ffc-sfi-agreement-web-container-secret
+  name: ffc-sfi-processing-web-container-secret
   type: Opaque
 
 service:
@@ -41,7 +41,7 @@ container:
 
 ingress:
   class: nginx
-  endpoint: ffc-sfi-agreement-web
+  endpoint: ffc-sfi-processing-web
   server: example.com
 
 livenessProbe:

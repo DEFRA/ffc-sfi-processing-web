@@ -1,5 +1,4 @@
 describe('home route', () => {
-  jest.mock('ffc-messaging')
   let createServer
   let server
 

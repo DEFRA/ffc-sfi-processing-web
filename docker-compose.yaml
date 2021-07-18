@@ -8,5 +8,5 @@ services:
     image: ffc-sfi-processing-web
     container_name: ffc-sfi-processing-web
     environment:
-      APPINSIGHTS_CLOUDROLE: ffc-sfi-agreement-web-local
+      APPINSIGHTS_CLOUDROLE: ffc-sfi-processing-web-local
       APPINSIGHTS_INSTRUMENTATIONKEY: ${APPINSIGHTS_INSTRUMENTATIONKEY}
