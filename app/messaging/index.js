@@ -1,9 +1,11 @@
 const config = require('../config')
 const processCaseMessage = require('./process-case-message')
 const processSubmitMessage = require('./process-submit-message')
+const processValidationMessage = require('./process-validation-message')
 const { MessageReceiver } = require('ffc-messaging')
 let submitReceiver
 let caseReceiver
+let validationReceiver
 
 async function start () {
   const submitAction = message => processSubmitMessage(message, submitReceiver)
@@ -14,12 +16,17 @@ async function start () {
   caseReceiver = new MessageReceiver(config.caseSubscription, caseAction)
   await caseReceiver.subscribe()
 
+  const validationAction = message => processValidationMessage(message, validationReceiver)
+  validationReceiver = new MessageReceiver(config.validationSubscription, validationAction)
+  await validationReceiver.subscribe()
+
   console.info('Ready to receive messages')
 }
 
 async function stop () {
   await submitReceiver.closeConnection()
   await caseReceiver.closeConnection()
+  await validationReceiver.closeConnection()
 }
 
 module.exports = { start, stop }

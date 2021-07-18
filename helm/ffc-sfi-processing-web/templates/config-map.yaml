@@ -13,5 +13,7 @@ data:
   CASE_SUBSCRIPTION_ADDRESS: {{ quote .Values.container.caseSubscriptionAddress }}
   PAYMENT_TOPIC_ADDRESS: {{ quote .Values.container.paymentTopicAddress }}
   VALIDATE_TOPIC_ADDRESS: {{ quote .Values.container.validateTopicAddress }}
+  VALIDATION_TOPIC_ADDRESS: {{ quote .Values.container.validationTopicAddress }}
+  VALIDATION_SUBSCRIPTION_ADDRESS: {{ quote .Values.container.validationSubscriptionAddress }}
   {{- end }}
 {{- end -}}
