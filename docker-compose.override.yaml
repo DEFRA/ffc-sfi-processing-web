@@ -10,8 +10,8 @@ services:
     image: ffc-sfi-processing-web-development
     container_name: ffc-sfi-processing-web-development
     ports:
-      - "3000:3000"
-      - "9229:9229"
+      - "3006:3006"
+      - "9236:9236"
     volumes:
       - ./app/:/home/node/app/
       - ./package.json:/home/node/package.json

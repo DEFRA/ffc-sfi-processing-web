@@ -7,4 +7,6 @@ services:
       target: production
     image: ffc-sfi-processing-web
     container_name: ffc-sfi-processing-web
-    environment: {}
+    environment:
+      APPINSIGHTS_CLOUDROLE: ffc-sfi-agreement-web-local
+      APPINSIGHTS_INSTRUMENTATIONKEY: ${APPINSIGHTS_INSTRUMENTATIONKEY}
