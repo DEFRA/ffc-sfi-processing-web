@@ -6,5 +6,11 @@ data:
   APPINSIGHTS_CLOUDROLE: {{ quote .Values.name }}
   {{- if .Values.container.googleTagManagerKey }}
   GOOGLE_TAG_MANAGER_KEY: {{ quote .Values.container.googleTagManagerKey }}
+  MESSAGE_QUEUE_HOST: {{ quote .Values.container.messageQueueHost }}
+  SUBMIT_TOPIC_ADDRESS: {{ quote .Values.container.submitTopicAddress }}
+  SUBMIT_SUBSCRIPTION_ADDRESS: {{ quote .Values.container.submitSubscriptionAddress }}
+  CASE_TOPIC_ADDRESS: {{ quote .Values.container.caseTopicAddress }}
+  CASE_SUBSCRIPTION_ADDRESS: {{ quote .Values.container.caseSubscriptionAddress }}
+  PAYMENT_TOPIC_ADDRESS: {{ quote .Values.container.paymentTopicAddress }}
   {{- end }}
 {{- end -}}
