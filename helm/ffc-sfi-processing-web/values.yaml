@@ -44,6 +44,7 @@ container:
   caseTopicAddress: ffc-sfi-agreement-case
   caseSubscriptionAddress: ffc-sfi-agreement-case-processing
   paymentTopicAddress: ffc-sfi-payment-request
+  validateTopicAddress: ffc-sfi-agreement-validate
 
 ingress:
   class: nginx

@@ -1,15 +1,16 @@
 const config = require('../config')
-const processMessage = require('./process-message')
+const processCaseMessage = require('./process-case-message')
+const processSubmitMessage = require('./process-submit-message')
 const { MessageReceiver } = require('ffc-messaging')
 let submitReceiver
 let caseReceiver
 
 async function start () {
-  const submitAction = message => processMessage(message, submitReceiver)
+  const submitAction = message => processSubmitMessage(message, submitReceiver)
   submitReceiver = new MessageReceiver(config.submitSubscription, submitAction)
   await submitReceiver.subscribe()
 
-  const caseAction = message => processMessage(message, caseReceiver)
+  const caseAction = message => processCaseMessage(message, caseReceiver)
   caseReceiver = new MessageReceiver(config.caseSubscription, caseAction)
   await caseReceiver.subscribe()
 

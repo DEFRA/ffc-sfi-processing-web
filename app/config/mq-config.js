@@ -28,6 +28,12 @@ const mqSchema = joi.object({
     username: joi.string(),
     password: joi.string(),
     type: joi.string()
+  },
+  validateTopic: {
+    name: joi.string().default('ffc-sfi-agreement-validate'),
+    address: joi.string().default('validate'),
+    username: joi.string(),
+    password: joi.string()
   }
 })
 const mqConfig = {
@@ -58,6 +64,12 @@ const mqConfig = {
     username: process.env.MESSAGE_QUEUE_USER,
     password: process.env.MESSAGE_QUEUE_PASSWORD,
     type: 'topic'
+  },
+  validateTopic: {
+    name: process.env.VALIDATE_TOPIC_NAME,
+    address: process.env.VALIDATE_TOPIC_ADDRESS,
+    username: process.env.MESSAGE_QUEUE_USER,
+    password: process.env.MESSAGE_QUEUE_PASSWORD
   }
 }
 
@@ -71,8 +83,12 @@ if (mqResult.error) {
 }
 const submitSubscription = { ...mqResult.value.messageQueue, ...mqResult.value.submitSubscription }
 const caseSubscription = { ...mqResult.value.messageQueue, ...mqResult.value.caseSubscription }
+const paymentTopic = { ...mqResult.value.messageQueue, ...mqResult.value.validateTopic }
+const validateTopic = { ...mqResult.value.messageQueue, ...mqResult.value.validateTopic }
 
 module.exports = {
   submitSubscription,
-  caseSubscription
+  caseSubscription,
+  paymentTopic,
+  validateTopic
 }

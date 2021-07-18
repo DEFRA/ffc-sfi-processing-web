@@ -34,6 +34,8 @@ const value = result.value
 
 value.submitSubscription = mqConfig.submitSubscription
 value.caseSubscription = mqConfig.caseSubscription
+value.paymentTopic = mqConfig.paymentTopic
+value.validateTopic = mqConfig.validateTopic
 
 value.isDev = value.env === 'development'
 value.isTest = value.env === 'test'
