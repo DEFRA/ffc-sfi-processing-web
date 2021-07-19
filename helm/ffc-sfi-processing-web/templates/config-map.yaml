@@ -3,11 +3,6 @@
 data:
   NODE_ENV: {{ quote .Values.environment }}
   PORT: {{ quote .Values.container.port }}
-  {{- if .Values.container.redisHostname }}
-  REDIS_HOSTNAME: {{ quote .Values.container.redisHostname }}
-  {{- end }}
-  REDIS_PORT: {{ quote .Values.container.redisPort }}
-  REDIS_PARTITION: {{ quote .Values.container.redisPartition }}
   POSTGRES_DB: {{ quote .Values.postgresService.postgresDb }}
   POSTGRES_HOST: {{ quote .Values.postgresService.postgresHost }}
   POSTGRES_PORT: {{ quote .Values.postgresService.postgresPort }}

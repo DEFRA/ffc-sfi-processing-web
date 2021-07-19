@@ -26,11 +26,7 @@ container:
   limitMemory: 40Mi
   limitCpu: 40m
   port: 3006
-  redisHostname: redis-redis-ha.default
-  redisPassword: redis
-  redisPort: 6379
-  redisPartition: ffc-sfi-processing-web
-
+  
 postgresService:
   postgresDb: ffc_sfi_processing_web
   # postgresExternalName is the external host name to which PostgreSQL
