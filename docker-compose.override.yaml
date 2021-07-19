@@ -18,7 +18,7 @@ services:
 
   ffc-sfi-processing-web-postgres:
     ports:
-      - "5432:5432"
+      - "5437:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
