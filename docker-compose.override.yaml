@@ -5,13 +5,33 @@ version: '3.8'
 
 services:
   ffc-sfi-processing-web:
+    depends_on:
+      - redis
     build:
       target: development
     image: ffc-sfi-processing-web-development
     container_name: ffc-sfi-processing-web-development
     ports:
-      - "3000:3000"
-      - "9229:9229"
+      - "3006:3006"
+      - "9236:9229"
+    environment:
+      REDIS_HOSTNAME: redis
     volumes:
       - ./app/:/home/node/app/
       - ./package.json:/home/node/package.json
+  redis:
+    image: redis:4.0.14
+    volumes:
+      - redis_data:/data
+    ports:
+      - "6379:6379"
+
+  ffc-sfi-processing-web-postgres:
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  redis_data:
+  postgres_data: {}

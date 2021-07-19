@@ -9,6 +9,10 @@ labels: {}
 containerConfigMap:
   name: ffc-sfi-processing-web-config-map
 
+containerSecret:
+  name: ffc-sfi-processing-web-container-secret
+  type: Opaque
+
 deployment:
   restartPolicy: Always
   priorityClassName: default
@@ -19,20 +23,31 @@ container:
   imagePullPolicy: IfNotPresent
   requestMemory: 10Mi
   requestCpu: 10m
-  limitMemory: 40Mi
-  limitCpu: 40m
-  port: 3000
+  limitMemory: 120Mi
+  limitCpu: 80m
+  port: 3006
+  
+postgresService:
+  postgresDb: ffc_sfi_processing_web
+  # postgresExternalName is the external host name to which PostgreSQL
+  # requests should be forwarded. If empty, PostgreSQL is assumed to be
+  # within the cluster and accessible via postgresHost
+  postgresExternalName:
+  postgresHost: ffc-sfi-processing-web-postgres
+  postgresPort: 5432
+  postgresSchema: public
+  postgresUser: postgres
 
 livenessProbe:
   path: /healthz
-  port: 3000
+  port: 3006
   initialDelaySeconds: 10
   periodSeconds: 10
   failureThreshold: 3
 
 readinessProbe:
   path: /healthy
-  port: 3000
+  port: 3006
   initialDelaySeconds: 10
   periodSeconds: 10
   failureThreshold: 3
