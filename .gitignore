@@ -3,3 +3,6 @@ node_modules
 helm/**/*.lock
 *.tgz
 .vscode
+dist/
+.env
+_layout.njk
