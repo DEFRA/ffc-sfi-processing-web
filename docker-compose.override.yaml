@@ -6,7 +6,6 @@ version: '3.8'
 services:
   ffc-sfi-processing-web:
     depends_on:
-      - redis
     build:
       target: development
     image: ffc-sfi-processing-web-development
