@@ -38,6 +38,12 @@ container:
   limitMemory: 120Mi
   limitCpu: 120m
   port: 3006
+  messageQueueHost: namespace.servicebus.windows.net
+  submitTopicAddress: ffc-sfi-agreement-submit
+  submitSubscriptionAddress: ffc-sfi-agreement-submit-processing
+  caseTopicAddress: ffc-sfi-agreement-case
+  caseSubscriptionAddress: ffc-sfi-agreement-case-processing
+  paymentTopicAddress: ffc-sfi-payment-request
 
 ingress:
   class: nginx

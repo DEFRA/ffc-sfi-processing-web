@@ -1,4 +1,5 @@
 const joi = require('joi')
+const mqConfig = require('./mq-config')
 const dbConfig = require('./db-config')
 
 // Define config schema
@@ -31,6 +32,9 @@ if (result.error) {
 
 // Use the joi validated value
 const value = result.value
+
+value.submitSubscription = mqConfig.submitSubscription
+value.caseSubscription = mqConfig.caseSubscription
 
 value.isDev = value.env === 'development'
 value.isTest = value.env === 'test'

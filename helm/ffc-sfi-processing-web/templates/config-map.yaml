@@ -7,6 +7,12 @@ data:
   {{- if .Values.container.googleTagManagerKey }}
   GOOGLE_TAG_MANAGER_KEY: {{ quote .Values.container.googleTagManagerKey }}
   {{- end }}
+  MESSAGE_QUEUE_HOST: {{ quote .Values.container.messageQueueHost }}
+  SUBMIT_TOPIC_ADDRESS: {{ quote .Values.container.submitTopicAddress }}
+  SUBMIT_SUBSCRIPTION_ADDRESS: {{ quote .Values.container.submitSubscriptionAddress }}
+  CASE_TOPIC_ADDRESS: {{ quote .Values.container.caseTopicAddress }}
+  CASE_SUBSCRIPTION_ADDRESS: {{ quote .Values.container.caseSubscriptionAddress }}
+  PAYMENT_TOPIC_ADDRESS: {{ quote .Values.container.paymentTopicAddress }}
   POSTGRES_DB: {{ quote .Values.postgresService.postgresDb }}
   POSTGRES_HOST: {{ quote .Values.postgresService.postgresHost }}
   POSTGRES_PORT: {{ quote .Values.postgresService.postgresPort }}
