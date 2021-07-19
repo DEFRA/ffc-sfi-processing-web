@@ -1,0 +1,8 @@
+version: '3.8'
+services:
+  ffc-sfi-processing-web:
+    command: npm run test:debug
+    ports:
+      - "9236:9236"
+    volumes:
+      - ./app/:/home/node/app/

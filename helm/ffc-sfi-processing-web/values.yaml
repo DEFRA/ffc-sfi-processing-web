@@ -4,7 +4,15 @@ namespace: ffc-sfi
 workstream: ffc-sfi
 image: ffc-sfi-processing-web
 
-labels: {}
+labels:
+  component: web
+
+appInsights:
+  key:
+
+azureIdentity:
+  clientID: not-a-real-clientID
+  resourceID: not-a-real-resourceID
 
 containerConfigMap:
   name: ffc-sfi-processing-web-config-map
@@ -12,6 +20,10 @@ containerConfigMap:
 containerSecret:
   name: ffc-sfi-processing-web-container-secret
   type: Opaque
+
+service:
+  port: 80
+  type: ClusterIP
 
 deployment:
   restartPolicy: Always
@@ -24,8 +36,13 @@ container:
   requestMemory: 10Mi
   requestCpu: 10m
   limitMemory: 120Mi
-  limitCpu: 80m
+  limitCpu: 120m
   port: 3006
+
+ingress:
+  class: nginx
+  endpoint: ffc-sfi-processing-web
+  server: example.com
   
 postgresService:
   postgresDb: ffc_sfi_processing_web
@@ -51,3 +68,5 @@ readinessProbe:
   initialDelaySeconds: 10
   periodSeconds: 10
   failureThreshold: 3
+
+aadPodIdentity: true
