@@ -1,6 +1,6 @@
 {
   "name": "ffc-sfi-processing-web",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "FFC SFI agreement processing web service",
   "homepage": "https://github.com/DEFRA/ffc-sfi-processing-web",
   "main": "app/index.js",
@@ -31,7 +31,11 @@
     "blipp": "^4.0.2",
     "govuk-frontend": "^3.11.0",
     "joi": "^17.4.0",
-    "nunjucks": "^3.2.3"
+    "nunjucks": "^3.2.3",
+    "@azure/identity": "^1.4.0",
+    "pg": "^8.6.0",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.6.5"
   },
   "devDependencies": {
     "clean-webpack-plugin": "^3.0.0",

@@ -1,4 +1,5 @@
 const joi = require('joi')
+const dbConfig = require('./db-config')
 
 // Define config schema
 const schema = joi.object({
@@ -34,5 +35,7 @@ const value = result.value
 value.isDev = value.env === 'development'
 value.isTest = value.env === 'test'
 value.isProd = value.env === 'production'
+
+value.dbConfig = dbConfig
 
 module.exports = value
