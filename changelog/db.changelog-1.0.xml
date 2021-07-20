@@ -110,7 +110,7 @@
       <column name="updatedAt" type="TIMESTAMP WITH TIME ZONE">
         <constraints nullable="false" />
       </column>
-      <column name="Submitted" type="TIMESTAMP WITH TIME ZONE" />
+      <column name="submitted" type="TIMESTAMP WITH TIME ZONE" />
     </createTable>
     <addForeignKeyConstraint baseColumnNames="agreementId" baseTableName="paymentRequests" constraintName="fk_paymentRequests_agreementId" referencedColumnNames="agreementId" referencedTableName="agreements" />
   </changeSet>

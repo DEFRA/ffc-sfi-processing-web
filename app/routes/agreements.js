@@ -1,9 +1,12 @@
+const { getAgreements } = require('../agreements')
+
 module.exports = {
   method: 'GET',
   path: '/agreements',
   options: {
-    handler: (request, h) => {
-      return h.view('agreements')
+    handler: async (request, h) => {
+      const agreements = await getAgreements()
+      return h.view('agreements', { agreements })
     }
   }
 }
