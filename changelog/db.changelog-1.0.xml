@@ -80,6 +80,7 @@
         <constraints nullable="true" primaryKey="true" primaryKeyName="task_pkey" />
       </column>
       <column name="taskTypeId" type="SMALLINT" defaultValue="1" />
+      <column name="statusId" type="SMALLINT" defaultValue="1" />
       <column name="agreementId" type="INTEGER" />
       <column name="correlationId" type="UUID" />
       <column name="createdAt" type="TIMESTAMP WITH TIME ZONE">
@@ -91,6 +92,7 @@
       <column name="closedAt" type="TIMESTAMP WITH TIME ZONE" />
     </createTable>
     <addForeignKeyConstraint baseColumnNames="taskTypeId" baseTableName="tasks" constraintName="fk_tasks_taskTypeId" referencedColumnNames="taskTypeId" referencedTableName="taskTypes" />
+    <addForeignKeyConstraint baseColumnNames="statusId" baseTableName="tasks" constraintName="fk_tasks_statusId" referencedColumnNames="statusId" referencedTableName="status" />
     <addForeignKeyConstraint baseColumnNames="agreementId" baseTableName="tasks" constraintName="fk_tasks_agreementId" referencedColumnNames="agreementId" referencedTableName="agreements" />
   </changeSet>
   <changeSet author="John Watson" id="7">
