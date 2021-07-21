@@ -14,8 +14,54 @@
 
 {% block content %}
   <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-      <h1 class="govuk-heading-l">Outstanding tasks</h1>
+    <div class="govuk-grid-column-full">
+      <h1 class="govuk-heading-l">Agreement tasks</h1>
+
+      {% if error %}
+        <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="govuk-error-summary">
+          <h2 class="govuk-error-summary__title" id="error-summary-title">There is a problem closing this task</h2>          
+        </div>
+      {% endif %}
+
+      {% if tasks.length %}
+      <table class="govuk-table">
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header">Agreement</th>
+            <th scope="col" class="govuk-table__header">SBI</th>
+            <th scope="col" class="govuk-table__header">Type</th>
+            <th scope="col" class="govuk-table__header">Status</th>
+            <th scope="col" class="govuk-table__header">Created</th>
+            <th scope="col" class="govuk-table__header">Closed</th>
+            <th scope="col" class="govuk-table__header"></th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          {% for task in tasks %}
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">{{ task.agreement.agreementNumber }}</td>
+              <td class="govuk-table__cell">{{ task.agreement.sbi }}</td>
+              <td class="govuk-table__cell">{{ task.taskType.name }}</td>
+              <td class="govuk-table__cell">{{ task.status.status }}</td>
+              <td class="govuk-table__cell">{{ task.createdAt }}</td>
+              <td class="govuk-table__cell">{{ task.closedAt }}</td>
+              <td class="govuk-table__cell">
+                {% if task.closedAt == 'Open' %}
+                <form method="POST" action="/task/close">
+                  <input type="hidden" name="crumb" value="{{crumb}}"/>
+                  <input type="hidden" id="taskId" name="taskId" value="{{ task.taskId }}">
+                  <input type="hidden" id="agreementId" name="agreementId" value="{{ task.agreementId }}">
+                  <button class="govuk-button" data-module="govuk-button">Close</button>
+                </form>
+                {% endif %}
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      {% else %}
+        <p class="govuk-body">No tasks available for agreement</p>
+      {% endif %}
     </div>
   </div>
 {% endblock %}

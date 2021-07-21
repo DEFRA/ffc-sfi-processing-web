@@ -35,8 +35,8 @@
             <td class="govuk-table__cell">{{ agreement.sbi }}</td>
             <td class="govuk-table__cell">{{ agreement.agreementData.paymentAmount }}</td>
             <td class="govuk-table__cell">{{ agreement.createdAt }}</td>
-            <td class="govuk-table__cell">{{ agreement.tasks.length }}</td>
-            <td class="govuk-table__cell">{{ agreement.paymentRequests.length }}</td>
+            <td class="govuk-table__cell"><a href="/tasks?agreementId={{ agreement.agreementId }}" class="govuk-link">{{ agreement.tasks.length }}</a></td>
+            <td class="govuk-table__cell"><a href="/payment-requests?agreementId={{ agreement.agreementId }}" class="govuk-link">{{ agreement.paymentRequests.length }}</a></td>
           </tr>
           {% endfor %}
         </tbody>
