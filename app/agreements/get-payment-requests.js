@@ -1,8 +1,9 @@
 const db = require('../data')
 
 async function getPaymentRequests (agreementId) {
+  const where = agreementId ? { agreementId } : {}
   return db.paymentRequest.findAll({
-    where: { agreementId },
+    where,
     order: [['createdAt', 'DESC'], ['submitted']]
   })
 }
