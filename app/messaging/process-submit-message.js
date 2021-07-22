@@ -8,7 +8,7 @@ async function processSubmitMessage (message, receiver) {
     console.info('Received submitted agreement')
     const validationCorrelationId = uuidv4()
     await createAgreement(message.body, validationCorrelationId)
-    await sendMessage({ sbi: message.body.sbi }, 'uk.gov.sfi.agreement.validate', validationCorrelationId, config.validateTopic)
+    await sendMessage({ ...message.body }, 'uk.gov.sfi.agreement.validate', validationCorrelationId, config.validateTopic)
     console.info('Validation requested')
     await receiver.completeMessage(message)
   } catch (err) {

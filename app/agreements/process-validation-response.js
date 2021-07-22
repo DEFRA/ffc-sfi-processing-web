@@ -2,12 +2,10 @@ const db = require('../data')
 const createTask = require('./create-task')
 
 async function processValidationResponse (validationResponse, validationCorrelationId) {
-  const warnings = validationResponse.warnings
+  await db.task.update({ closedAt: new Date(), statusId: 4 }, { where: { correlationId: validationCorrelationId, closedAt: null } })
 
-  if (!warnings.length) {
-    await db.task.update({ closedAt: new Date(), statusId: 4 }, { where: { correlationId: validationCorrelationId, closedAt: null } })
-  } else {
-    for (const warning of warnings) {
+  if (validationResponse.warnings) {
+    for (const warning of validationResponse.warnings) {
       await createTask(validationResponse.agreementNumber, warning.type)
     }
   }
