@@ -6,6 +6,7 @@ const { getPaymentRequests, getPendingPayments } = require('./get-payment-reques
 const updatePublishedPayments = require('./update-published-payments')
 const closeTask = require('./close-task')
 const payAgreement = require('./pay-agreement')
+const processValidationResponse = require('./process-validation-response')
 
 module.exports = {
   createAgreement,
@@ -16,5 +17,6 @@ module.exports = {
   closeTask,
   payAgreement,
   getPendingPayments,
-  updatePublishedPayments
+  updatePublishedPayments,
+  processValidationResponse
 }
