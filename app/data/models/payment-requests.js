@@ -29,9 +29,9 @@ module.exports = (sequelize, DataTypes) => {
     freezeTableName: true
   })
   paymentRequest.associate = function (models) {
-    paymentRequest.hasMany(models.agreement, {
+    paymentRequest.belongsTo(models.agreement, {
       foreignKey: 'agreementId',
-      as: 'agreements'
+      as: 'agreement'
     })
   }
   return paymentRequest

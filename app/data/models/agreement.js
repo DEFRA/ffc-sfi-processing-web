@@ -17,6 +17,12 @@ module.exports = (sequelize, DataTypes) => {
       get () {
         return moment(this.getDataValue('updatedAt')).format('DD/MM/YYYY HH:mm:ss')
       }
+    },
+    hasOpenTasks: {
+      type: DataTypes.VIRTUAL,
+      get () {
+        return this.tasks.some(x => x.statusId === 1)
+      }
     }
   },
   {
