@@ -1,6 +1,6 @@
 const { getAgreements } = require('../agreements')
 
-module.exports = {
+module.exports = [{
   method: 'GET',
   path: '/agreements',
   options: {
@@ -9,4 +9,13 @@ module.exports = {
       return h.view('agreements', { agreements })
     }
   }
-}
+}, {
+  method: 'GET',
+  path: '/agreement',
+  options: {
+    handler: async (request, h) => {
+      const agreements = await getAgreements(request.query.agreementId)
+      return h.view('agreement', { agreements })
+    }
+  }
+}]

@@ -32,7 +32,7 @@
         <tbody class="govuk-table__body">
           {% for agreement in agreements %}
           <tr class="govuk-table__row">
-            <td class="govuk-table__cell">{{ agreement.agreementNumber }}</td>
+            <td class="govuk-table__cell"><a href="/agreement?agreementId={{ agreement.agreementId }}" class="govuk-link">{{ agreement.agreementNumber }}</a></td>
             <td class="govuk-table__cell">{{ agreement.sbi }}</td>
             <td class="govuk-table__cell govuk-table__header--numeric">£{{ agreement.agreementData.paymentAmount }}</td>
             <td class="govuk-table__cell">{{ agreement.createdAt }}</td>

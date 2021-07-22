@@ -39,7 +39,7 @@
         <tbody class="govuk-table__body">
           {% for task in tasks %}
             <tr class="govuk-table__row">
-              <td class="govuk-table__cell">{{ task.agreement.agreementNumber }}</td>
+              <td class="govuk-table__cell"><a href="/agreement?agreementId={{ agreement.agreementId }}" class="govuk-link">{{ task.agreement.agreementNumber }}</a></td>
               <td class="govuk-table__cell">{{ task.agreement.sbi }}</td>
               <td class="govuk-table__cell">{{ task.taskType.name }}</td>
               <td class="govuk-table__cell">{{ task.status.status }}</td>
