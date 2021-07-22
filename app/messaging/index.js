@@ -23,6 +23,7 @@ async function start () {
   await validationReceiver.subscribe()
 
   console.info('Ready to receive messages')
+
   paymentSender = new MessageSender(config.paymentTopic)
   setInterval(() => publishPendingPayments(paymentSender), config.paymentRequestPublishingInterval)
   console.info('Ready to publish payments')
