@@ -8,7 +8,8 @@ const schema = joi.object({
   port: joi.number().default(3006),
   env: joi.string().valid('development', 'test', 'production').default('development'),
   staticCacheTimeoutMillis: joi.number().default(7 * 24 * 60 * 60 * 1000),
-  googleTagManagerKey: joi.string().default('')
+  googleTagManagerKey: joi.string().default(''),
+  paymentRequestPublishingInterval: joi.number().default(5000)
 })
 
 // Build config
@@ -17,7 +18,8 @@ const config = {
   port: process.env.PORT,
   env: process.env.NODE_ENV,
   staticCacheTimeoutMillis: process.env.STATIC_CACHE_TIMEOUT_IN_MILLIS,
-  googleTagManagerKey: process.env.GOOGLE_TAG_MANAGER_KEY
+  googleTagManagerKey: process.env.GOOGLE_TAG_MANAGER_KEY,
+  paymentRequestPublishingInterval: process.env.PAYMENT_REQUEST_PUBLISHING_INTERVAL
 }
 
 // Validate config

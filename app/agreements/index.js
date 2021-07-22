@@ -1,7 +1,8 @@
 const createAgreement = require('./create-agreement')
 const getAgreements = require('./get-agreements')
 const getTasks = require('./get-tasks')
-const getPaymentRequests = require('./get-payment-requests')
+const { getPaymentRequests, getPendingPayments } = require('./get-payment-requests')
+const updatePublishedPayments = require('./update-published-payments')
 const closeTask = require('./close-task')
 const payAgreement = require('./pay-agreement')
 
@@ -11,5 +12,7 @@ module.exports = {
   getTasks,
   getPaymentRequests,
   closeTask,
-  payAgreement
+  payAgreement,
+  getPendingPayments,
+  updatePublishedPayments
 }

@@ -82,7 +82,7 @@ if (mqResult.error) {
 }
 const submitSubscription = { ...mqResult.value.messageQueue, ...mqResult.value.submitSubscription }
 const caseSubscription = { ...mqResult.value.messageQueue, ...mqResult.value.caseSubscription }
-const paymentTopic = { ...mqResult.value.messageQueue, ...mqResult.value.validateTopic }
+const paymentTopic = { ...mqResult.value.messageQueue, ...mqResult.value.paymentTopic }
 const validateTopic = { ...mqResult.value.messageQueue, ...mqResult.value.validateTopic }
 const validationResponseSubscription = { ...mqResult.value.messageQueue, ...mqResult.value.validationResponseSubscription }
 

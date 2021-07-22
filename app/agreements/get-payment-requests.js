@@ -9,4 +9,14 @@ async function getPaymentRequests (agreementId) {
   })
 }
 
-module.exports = getPaymentRequests
+async function getPendingPayments () {
+  return db.paymentRequest.findAll({
+    where: { submitted: null },
+    raw: true
+  })
+}
+
+module.exports = {
+  getPaymentRequests,
+  getPendingPayments
+}
