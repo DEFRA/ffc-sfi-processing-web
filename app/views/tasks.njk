@@ -34,8 +34,8 @@
             <th scope="col" class="govuk-table__header">SBI</th>
             <th scope="col" class="govuk-table__header">Type</th>
             <th scope="col" class="govuk-table__header">Status</th>
-            <th scope="col" class="govuk-table__header">Created</th>
-            <th scope="col" class="govuk-table__header">Closed</th>
+            <th scope="col" class="govuk-table__header govuk-table__header--numeric">Created</th>
+            <th scope="col" class="govuk-table__header govuk-table__header--numeric">Closed</th>
             <th scope="col" class="govuk-table__header"></th>
           </tr>
         </thead>
@@ -46,8 +46,8 @@
               <td class="govuk-table__cell">{{ task.agreement.sbi }}</td>
               <td class="govuk-table__cell">{{ task.taskType.name }}</td>
               <td class="govuk-table__cell">{{ task.status.status }}</td>
-              <td class="govuk-table__cell">{{ task.createdAt }}</td>
-              <td class="govuk-table__cell">{{ task.closedAt }}</td>
+              <td class="govuk-table__cell govuk-table__header--numeric">{{ task.createdAt }}</td>
+              <td class="govuk-table__cell govuk-table__header--numeric">{{ task.closedAt }}</td>
               <td class="govuk-table__cell">
                 {% if task.closedAt == 'Open' %}
                 <form method="POST" action="/task/close">
