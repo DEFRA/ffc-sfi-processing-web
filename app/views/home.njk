@@ -5,14 +5,23 @@
 
 {% block beforeContent %}
   {{ govukBreadcrumbs({
-    items: [
-      {
-        text: "Home",
-        href: "#"
-      }]
-  }) }}
+    items: [{
+      text: "Home",
+      href: "#"
+    }]
+  })}}
 {% endblock %}
 
 {% block content %}
-  
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">{{ serviceName }}</h1>
+
+      <p class="govuk-body">Manage post submission agreement tasks</p>
+
+      <p class="govuk-body"><a href="/agreements" class="govuk-link">View submitted agreement status</a></p>
+      <p class="govuk-body"><a href="/tasks" class="govuk-link">View outstanding agreement tasks</a></p>
+      <p class="govuk-body"><a href="/payment-requests" class="govuk-link">View payment requests</a></p>
+    </div>
+  </div>
 {% endblock %}

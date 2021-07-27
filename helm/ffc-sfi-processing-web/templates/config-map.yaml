@@ -13,6 +13,9 @@ data:
   CASE_TOPIC_ADDRESS: {{ quote .Values.container.caseTopicAddress }}
   CASE_SUBSCRIPTION_ADDRESS: {{ quote .Values.container.caseSubscriptionAddress }}
   PAYMENT_TOPIC_ADDRESS: {{ quote .Values.container.paymentTopicAddress }}
+  VALIDATE_TOPIC_ADDRESS: {{ quote .Values.container.validateTopicAddress }}
+  VALIDATION_TOPIC_ADDRESS: {{ quote .Values.container.validationTopicAddress }}
+  VALIDATION_SUBSCRIPTION_ADDRESS: {{ quote .Values.container.validationSubscriptionAddress }}
   POSTGRES_DB: {{ quote .Values.postgresService.postgresDb }}
   POSTGRES_HOST: {{ quote .Values.postgresService.postgresHost }}
   POSTGRES_PORT: {{ quote .Values.postgresService.postgresPort }}

@@ -1,0 +1,53 @@
+{% extends '_layout.njk' %}
+
+{% from "govuk/components/breadcrumbs/macro.njk" import govukBreadcrumbs %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% block beforeContent %}
+  {{ govukBreadcrumbs({
+    items: [{
+      text: "Home",
+      href: "/"
+    },{
+      text: "Agreements",
+      href: "/agreements"
+    }]
+  })}}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <h1 class="govuk-heading-l">Payment requests</h1>
+
+      {% if paymentRequests.length %}
+      <table class="govuk-table">
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header">Agreement</th>
+            <th scope="col" class="govuk-table__header">SBI</th>
+            <th scope="col" class="govuk-table__header govuk-table__header--numeric">Request</th>
+            <th scope="col" class="govuk-table__header govuk-table__header--numeric">Value</th>
+            <th scope="col" class="govuk-table__header govuk-table__header--numeric">Created</th>
+            <th scope="col" class="govuk-table__header govuk-table__header--numeric">Submitted</th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          {% for paymentRequest in paymentRequests %}
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell"><a href="/agreement?agreementId={{ agreement.agreementId }}" class="govuk-link">{{ paymentRequest.agreement.agreementNumber }}</a></td>
+              <td class="govuk-table__cell">{{ paymentRequest.agreement.sbi }}</td>
+              <td class="govuk-table__cell govuk-table__header--numeric">{{ paymentRequest.calculationData.paymentRequestNumber }}</td>
+              <td class="govuk-table__cell govuk-table__header--numeric">£{{ paymentRequest.calculationData.paymentAmount }}</td>
+              <td class="govuk-table__cell govuk-table__header--numeric">{{ paymentRequest.createdAt }}</td>
+              <td class="govuk-table__cell govuk-table__header--numeric">{{ paymentRequest.submitted }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      {% else %}
+        <p class="govuk-body">No payment requests created</p>
+      {% endif %}
+    </div>
+  </div>
+{% endblock %}

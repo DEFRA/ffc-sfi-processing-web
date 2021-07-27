@@ -11,14 +11,14 @@ services:
     container_name: ffc-sfi-processing-web-development
     ports:
       - "3006:3006"
-      - "9236:9236"
+      - "9236:9229"
     volumes:
       - ./app/:/home/node/app/
       - ./package.json:/home/node/package.json
 
   ffc-sfi-processing-web-postgres:
     ports:
-      - "5432:5432"
+      - "5437:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
