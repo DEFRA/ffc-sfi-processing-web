@@ -2,3 +2,4 @@ resources:
   topics:
     - name: submit
     - name: case
+    - name: payment
