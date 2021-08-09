@@ -1,4 +1,5 @@
 const db = require('../data')
+const moment = require('moment')
 
 async function payAgreement (agreementId) {
   const agreement = await db.agreement.findOne({
@@ -12,8 +13,21 @@ async function payAgreement (agreementId) {
   const paymentRequest = {
     agreementId: agreement.agreementId,
     calculationData: {
+      sourceSystem: 'SFIP',
+      sbi: agreement.sbi,
+      marketingYear: 2022,
       paymentRequestNumber: agreement.paymentRequests.length + 1,
-      paymentAmount: agreement.agreementData.paymentAmount
+      agreementNumber: agreement.agreementNumber,
+      contractNumber: agreement.agreementData.contractNumber,
+      currency: 'GBP',
+      schedule: 'M12',
+      dueDate: moment().format('DD[/]MM[/]YYYY'),
+      value: agreement.agreementData.paymentAmount,
+      invoiceLines: [{
+        standardCode: '80001',
+        description: 'G00 - Gross value of claim',
+        value: agreement.agreementData.paymentAmount
+      }]
     }
   }
   await db.paymentRequest.create(paymentRequest)
