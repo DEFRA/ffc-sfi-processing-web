@@ -1,4 +1,5 @@
 const db = require('../data')
+const createContract = require('./create-contract')
 const highValuePaymentThreshold = 5000
 
 async function createAgreement (agreement, validationCorrelationId) {
@@ -6,6 +7,7 @@ async function createAgreement (agreement, validationCorrelationId) {
   try {
     const existingAgreement = await db.agreement.findOne({ where: { agreementNumber: agreement.agreementNumber }, transaction })
     if (!existingAgreement) {
+      agreement.agreement.contractNumber = createContract(agreement.agreementNumber)
       const createdAgreement = await db.agreement.create({ agreementNumber: agreement.agreementNumber, sbi: agreement.sbi, agreementData: agreement.agreement }, { transaction })
       await db.task.create({ taskTypeId: 1, agreementId: createdAgreement.agreementId, correlationId: validationCorrelationId }, { transaction })
       if (agreement.agreement.paymentAmount > highValuePaymentThreshold) {
