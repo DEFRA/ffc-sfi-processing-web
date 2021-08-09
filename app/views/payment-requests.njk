@@ -38,7 +38,7 @@
               <td class="govuk-table__cell"><a href="/agreement?agreementId={{ agreement.agreementId }}" class="govuk-link">{{ paymentRequest.agreement.agreementNumber }}</a></td>
               <td class="govuk-table__cell">{{ paymentRequest.agreement.sbi }}</td>
               <td class="govuk-table__cell govuk-table__header--numeric">{{ paymentRequest.calculationData.paymentRequestNumber }}</td>
-              <td class="govuk-table__cell govuk-table__header--numeric">£{{ paymentRequest.calculationData.paymentAmount }}</td>
+              <td class="govuk-table__cell govuk-table__header--numeric">£{{ paymentRequest.calculationData.value }}</td>
               <td class="govuk-table__cell govuk-table__header--numeric">{{ paymentRequest.createdAt }}</td>
               <td class="govuk-table__cell govuk-table__header--numeric">{{ paymentRequest.submitted }}</td>
             </tr>
