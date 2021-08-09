@@ -10,7 +10,7 @@ async function publishPendingPayments (paymentSender) {
 
 async function publishPayment (payment, paymentSender) {
   try {
-    const message = createMessage(payment, 'uk.gov.sfi.payment.request')
+    const message = createMessage(payment.calculationData, 'uk.gov.sfi.payment.request')
     await paymentSender.sendMessage(message)
     await updatePublishedPayments(payment.paymentRequestId)
   } catch (err) {
