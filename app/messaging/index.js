@@ -2,14 +2,12 @@ const config = require('../config')
 const processCaseMessage = require('./process-case-message')
 const processSubmitMessage = require('./process-submit-message')
 const processValidationMessage = require('./process-validation-message')
-const processCrmCase = require('./process-crm-case-message')
 const processCrmCloseCase = require('./process-crm-close-case-message')
 const publishPendingPayments = require('./publish-pending-payments')
 const { MessageReceiver, MessageSender } = require('ffc-messaging')
 let submitReceiver
 let caseReceiver
 let validationReceiver
-let crmCaseReceiver
 let crmCloseCaseReceiver
 let paymentSender
 
@@ -26,10 +24,6 @@ async function start () {
   validationReceiver = new MessageReceiver(config.validationResponseSubscription, validationAction)
   await validationReceiver.subscribe()
 
-  const crmCaseAction = message => processCrmCase(message, crmCaseReceiver)
-  crmCaseReceiver = new MessageReceiver(config.createCrmCaseSubscription, crmCaseAction)
-  await crmCaseReceiver.subscribe()
-
   const crmCaseCloseAction = message => processCrmCloseCase(message, crmCloseCaseReceiver)
   crmCloseCaseReceiver = new MessageReceiver(config.closeCrmCaseSubscription, crmCaseCloseAction)
   await crmCloseCaseReceiver.subscribe()
@@ -45,7 +39,6 @@ async function stop () {
   await submitReceiver.closeConnection()
   await caseReceiver.closeConnection()
   await validationReceiver.closeConnection()
-  await crmCaseReceiver.closeConnection()
   await crmCloseCaseReceiver.closeConnection()
   await paymentSender.closeConnection()
 }

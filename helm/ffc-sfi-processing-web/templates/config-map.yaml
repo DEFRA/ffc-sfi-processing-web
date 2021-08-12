@@ -17,7 +17,6 @@ data:
   VALIDATION_TOPIC_ADDRESS: {{ quote .Values.container.validationTopicAddress }}
   VALIDATION_SUBSCRIPTION_ADDRESS: {{ quote .Values.container.validationSubscriptionAddress }}
   CREATE_CRM_CASE_TOPIC_ADDRESS: {{ quote .Values.container.createCrmCaseTopicAddress }}
-  CREATE_CRM_CASE_SUBSCRIPTION_ADDRESS: {{ quote .Values.container.createCrmCaseSubscriptionAddress }}
   CLOSE_CRM_CASE_TOPIC_ADDRESS: {{ quote .Values.container.closeCrmCaseTopicAddress }}
   CLOSE_CRM_CASE_SUBSCRIPTION_ADDRESS: {{ quote .Values.container.closeCrmCaseSubscriptionAddress }}
   POSTGRES_DB: {{ quote .Values.postgresService.postgresDb }}
