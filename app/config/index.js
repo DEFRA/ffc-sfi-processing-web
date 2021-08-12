@@ -9,7 +9,9 @@ const schema = joi.object({
   env: joi.string().valid('development', 'test', 'production').default('development'),
   staticCacheTimeoutMillis: joi.number().default(7 * 24 * 60 * 60 * 1000),
   googleTagManagerKey: joi.string().default(''),
-  paymentRequestPublishingInterval: joi.number().default(5000)
+  paymentRequestPublishingInterval: joi.number().default(5000),
+  crmCaseRequestPublishingInterval: joi.number().default(5000),
+  crmCloseCaseRequestPublishingInterval: joi.number().default(5000)
 })
 
 // Build config
@@ -19,7 +21,9 @@ const config = {
   env: process.env.NODE_ENV,
   staticCacheTimeoutMillis: process.env.STATIC_CACHE_TIMEOUT_IN_MILLIS,
   googleTagManagerKey: process.env.GOOGLE_TAG_MANAGER_KEY,
-  paymentRequestPublishingInterval: process.env.PAYMENT_REQUEST_PUBLISHING_INTERVAL
+  paymentRequestPublishingInterval: process.env.PAYMENT_REQUEST_PUBLISHING_INTERVAL,
+  crmCaseRequestPublishingInterval: process.env.CRM_CASE_REQUEST_PUBLISHING_INTERVAL,
+  crmCloseCaseRequestPublishingInterval: process.env.CRM_CLOSE_CASE_REQUEST_PUBLISHING_INTERVAL
 }
 
 // Validate config
@@ -40,6 +44,10 @@ value.caseSubscription = mqConfig.caseSubscription
 value.paymentTopic = mqConfig.paymentTopic
 value.validateTopic = mqConfig.validateTopic
 value.validationResponseSubscription = mqConfig.validationResponseSubscription
+value.createCrmCaseTopic = mqConfig.createCrmCaseTopic
+value.createCrmCaseSubscription = mqConfig.createCrmCaseSubscription
+value.closeCrmCaseTopic = mqConfig.closeCrmCaseTopic
+value.closeCrmCaseSubscription = mqConfig.closeCrmCaseSubscription
 
 value.isDev = value.env === 'development'
 value.isTest = value.env === 'test'

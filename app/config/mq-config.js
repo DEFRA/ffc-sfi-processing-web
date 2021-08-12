@@ -34,6 +34,26 @@ const mqSchema = joi.object({
     address: joi.string().default('ffc-sfi-agreement-validate-response'),
     topic: joi.string(),
     type: joi.string()
+  },
+  createCrmCaseTopic: {
+    name: joi.string().default('ffc-sfi-crm-case-create'),
+    address: joi.string().default('ffc-sfi-crm-case-create')
+  },
+  createCrmCaseSubscription: {
+    name: joi.string().default('ffc-sfi-crm-case-create-crm'),
+    address: joi.string().default('ffc-sfi-crm-case-create-crm'),
+    topic: joi.string(),
+    type: joi.string()
+  },
+  closeCrmCaseTopic: {
+    name: joi.string().default('ffc-sfi-crm-case-closed'),
+    address: joi.string().default('ffc-sfi-crm-case-closed')
+  },
+  closeCrmCaseSubscription: {
+    name: joi.string().default('ffc-sfi-crm-case-closed-processing'),
+    address: joi.string().default('ffc-sfi-crm-case-closed-processing'),
+    topic: joi.string(),
+    type: joi.string()
   }
 })
 const mqConfig = {
@@ -69,6 +89,26 @@ const mqConfig = {
     address: process.env.VALIDATION_SUBSCRIPTION_ADDRESS,
     topic: process.env.VALIDATION_TOPIC_ADDRESS,
     type: 'subscription'
+  },
+  createCrmCaseTopic: {
+    name: process.env.CREATE_CRM_CASE_TOPIC_NAME,
+    address: process.env.CREATE_CRM_CASE_TOPIC_ADDRESS
+  },
+  createCrmCaseSubscription: {
+    name: process.env.CREATE_CRM_CASE_SUBSCRIPTION_NAME,
+    address: process.env.CREATE_CRM_CASE_SUBSCRIPTION_ADDRESS,
+    topic: process.env.CREATE_CRM_CASE_TOPIC_ADDRESS,
+    type: 'subscription'
+  },
+  closeCrmCaseTopic: {
+    name: process.env.CLOSE_CRM_CASE_TOPIC_NAME,
+    address: process.env.CLOSE_CRM_CASE_TOPIC_ADDRESS
+  },
+  closeCrmCaseSubscription: {
+    name: process.env.CLOSE_CRM_CASE_SUBSCRIPTION_NAME,
+    address: process.env.CLOSE_CRM_CASE_SUBSCRIPTION_ADDRESS,
+    topic: process.env.CLOSE_CRM_CASE_TOPIC_ADDRESS,
+    type: 'subscription'
   }
 }
 
@@ -85,11 +125,19 @@ const caseSubscription = { ...mqResult.value.messageQueue, ...mqResult.value.cas
 const paymentTopic = { ...mqResult.value.messageQueue, ...mqResult.value.paymentTopic }
 const validateTopic = { ...mqResult.value.messageQueue, ...mqResult.value.validateTopic }
 const validationResponseSubscription = { ...mqResult.value.messageQueue, ...mqResult.value.validationResponseSubscription }
+const createCrmCaseTopic = { ...mqResult.value.messageQueue, ...mqResult.value.createCrmCaseTopic }
+const createCrmCaseSubscription = { ...mqResult.value.messageQueue, ...mqResult.value.createCrmCaseSubscription }
+const closeCrmCaseTopic = { ...mqResult.value.messageQueue, ...mqResult.value.closeCrmCaseTopic }
+const closeCrmCaseSubscription = { ...mqResult.value.messageQueue, ...mqResult.value.closeCrmCaseSubscription }
 
 module.exports = {
   submitSubscription,
   caseSubscription,
   paymentTopic,
   validateTopic,
-  validationResponseSubscription
+  validationResponseSubscription,
+  createCrmCaseTopic,
+  createCrmCaseSubscription,
+  closeCrmCaseTopic,
+  closeCrmCaseSubscription
 }
