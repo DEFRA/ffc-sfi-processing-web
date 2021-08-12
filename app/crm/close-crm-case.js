@@ -6,7 +6,6 @@ const closeCrmCase = async (crmCloseCase) => {
   const crmCloseCaseSender = new MessageSender(config.closeCrmCaseTopic)
   publishCrmCloseCase(crmCloseCase, crmCloseCaseSender)
   console.info(`CRM Close Case Sent: ${crmCloseCase}`)
-  await crmCloseCaseSender.closeConnection()
 }
 
 module.exports = closeCrmCase

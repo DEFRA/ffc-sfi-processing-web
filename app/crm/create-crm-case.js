@@ -6,7 +6,6 @@ const createCrmCase = async (crmCase, validationCorrelationId) => {
   const crmCaseSender = new MessageSender(config.createCrmCaseTopic)
   publishCrmCase(crmCase, crmCaseSender)
   console.info(`CRM Create Case Sent: ${crmCase}`)
-  await crmCaseSender.closeConnection()
 }
 
 module.exports = createCrmCase
