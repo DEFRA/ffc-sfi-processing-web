@@ -9,49 +9,49 @@ const mqSchema = joi.object({
     appInsights: joi.object()
   },
   submitSubscription: {
-    name: joi.string().default('ffc-sfi-agreement-submit'),
-    address: joi.string().default('ffc-sfi-agreement-submit'),
+    name: joi.string(),
+    address: joi.string(),
     topic: joi.string(),
     type: joi.string()
   },
   caseSubscription: {
-    name: joi.string().default('ffc-sfi-agreement-case'),
-    address: joi.string().default('ffc-sfi-agreement-case'),
+    name: joi.string(),
+    address: joi.string(),
     topic: joi.string(),
     type: joi.string()
   },
   paymentTopic: {
-    name: joi.string().default('ffc-sfi-payment-request'),
-    address: joi.string().default('ffc-sfi-payment-request'),
+    name: joi.string(),
+    address: joi.string(),
     type: joi.string()
   },
   validateTopic: {
-    name: joi.string().default('ffc-sfi-agreement-validate'),
-    address: joi.string().default('ffc-sfi-agreement-validate')
+    name: joi.string(),
+    address: joi.string()
   },
   validationResponseSubscription: {
-    name: joi.string().default('ffc-sfi-agreement-validate-response'),
-    address: joi.string().default('ffc-sfi-agreement-validate-response'),
+    name: joi.string(),
+    address: joi.string(),
     topic: joi.string(),
     type: joi.string()
   },
   createCrmCaseTopic: {
-    name: joi.string().default('ffc-sfi-crm-case-create'),
-    address: joi.string().default('ffc-sfi-crm-case-create')
+    name: joi.string(),
+    address: joi.string()
   },
   createCrmCaseSubscription: {
-    name: joi.string().default('ffc-sfi-crm-case-create-crm'),
-    address: joi.string().default('ffc-sfi-crm-case-create-crm'),
+    name: joi.string(),
+    address: joi.string(),
     topic: joi.string(),
     type: joi.string()
   },
   closeCrmCaseTopic: {
-    name: joi.string().default('ffc-sfi-crm-case-closed'),
-    address: joi.string().default('ffc-sfi-crm-case-closed')
+    name: joi.string(),
+    address: joi.string()
   },
   closeCrmCaseSubscription: {
-    name: joi.string().default('ffc-sfi-crm-case-closed-processing'),
-    address: joi.string().default('ffc-sfi-crm-case-closed-processing'),
+    name: joi.string(),
+    address: joi.string(),
     topic: joi.string(),
     type: joi.string()
   }

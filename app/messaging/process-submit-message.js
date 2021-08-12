@@ -11,7 +11,7 @@ async function processSubmitMessage (message, receiver) {
     await createAgreement(message.body, validationCorrelationId)
     await sendMessage({ ...message.body }, 'uk.gov.sfi.agreement.validate', validationCorrelationId, config.validateTopic)
     console.info('Validation requested')
-    await createCrmCase(message.body, validationCorrelationId)
+    await createCrmCase(message.body)
     await receiver.completeMessage(message)
   } catch (err) {
     console.error('Unable to process message:', err)
