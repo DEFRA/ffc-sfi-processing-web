@@ -3,3 +3,5 @@ resources:
     - name: submit
     - name: case
     - name: payment
+    - name: crmcase
+    - name: closecrmcase

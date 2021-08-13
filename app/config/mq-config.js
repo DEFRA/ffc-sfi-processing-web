@@ -39,16 +39,6 @@ const mqSchema = joi.object({
     name: joi.string(),
     address: joi.string()
   },
-  createCrmCaseSubscription: {
-    name: joi.string(),
-    address: joi.string(),
-    topic: joi.string(),
-    type: joi.string()
-  },
-  closeCrmCaseTopic: {
-    name: joi.string(),
-    address: joi.string()
-  },
   closeCrmCaseSubscription: {
     name: joi.string(),
     address: joi.string(),
@@ -91,23 +81,13 @@ const mqConfig = {
     type: 'subscription'
   },
   createCrmCaseTopic: {
-    name: process.env.CREATE_CRM_CASE_TOPIC_NAME,
-    address: process.env.CREATE_CRM_CASE_TOPIC_ADDRESS
-  },
-  createCrmCaseSubscription: {
-    name: process.env.CREATE_CRM_CASE_SUBSCRIPTION_NAME,
-    address: process.env.CREATE_CRM_CASE_SUBSCRIPTION_ADDRESS,
-    topic: process.env.CREATE_CRM_CASE_TOPIC_ADDRESS,
-    type: 'subscription'
-  },
-  closeCrmCaseTopic: {
-    name: process.env.CLOSE_CRM_CASE_TOPIC_NAME,
-    address: process.env.CLOSE_CRM_CASE_TOPIC_ADDRESS
+    name: process.env.CRMCASE_TOPIC_NAME,
+    address: process.env.CRMCASE_TOPIC_ADDRESS
   },
   closeCrmCaseSubscription: {
-    name: process.env.CLOSE_CRM_CASE_SUBSCRIPTION_NAME,
-    address: process.env.CLOSE_CRM_CASE_SUBSCRIPTION_ADDRESS,
-    topic: process.env.CLOSE_CRM_CASE_TOPIC_ADDRESS,
+    name: process.env.CLOSECRMCASE_SUBSCRIPTION_NAME,
+    address: process.env.CLOSECRMCASE_SUBSCRIPTION_ADDRESS,
+    topic: process.env.CLOSECRMCASE_TOPIC_ADDRESS,
     type: 'subscription'
   }
 }
@@ -126,8 +106,6 @@ const paymentTopic = { ...mqResult.value.messageQueue, ...mqResult.value.payment
 const validateTopic = { ...mqResult.value.messageQueue, ...mqResult.value.validateTopic }
 const validationResponseSubscription = { ...mqResult.value.messageQueue, ...mqResult.value.validationResponseSubscription }
 const createCrmCaseTopic = { ...mqResult.value.messageQueue, ...mqResult.value.createCrmCaseTopic }
-const createCrmCaseSubscription = { ...mqResult.value.messageQueue, ...mqResult.value.createCrmCaseSubscription }
-const closeCrmCaseTopic = { ...mqResult.value.messageQueue, ...mqResult.value.closeCrmCaseTopic }
 const closeCrmCaseSubscription = { ...mqResult.value.messageQueue, ...mqResult.value.closeCrmCaseSubscription }
 
 module.exports = {
@@ -137,7 +115,5 @@ module.exports = {
   validateTopic,
   validationResponseSubscription,
   createCrmCaseTopic,
-  createCrmCaseSubscription,
-  closeCrmCaseTopic,
   closeCrmCaseSubscription
 }
