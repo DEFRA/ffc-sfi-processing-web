@@ -9,9 +9,7 @@ const schema = joi.object({
   env: joi.string().valid('development', 'test', 'production').default('development'),
   staticCacheTimeoutMillis: joi.number().default(7 * 24 * 60 * 60 * 1000),
   googleTagManagerKey: joi.string().default(''),
-  paymentRequestPublishingInterval: joi.number().default(5000),
-  crmCaseRequestPublishingInterval: joi.number().default(5000),
-  crmCloseCaseRequestPublishingInterval: joi.number().default(5000)
+  paymentRequestPublishingInterval: joi.number().default(5000)
 })
 
 // Build config
