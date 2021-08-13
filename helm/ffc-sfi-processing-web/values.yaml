@@ -47,6 +47,9 @@ container:
   validateTopicAddress: ffc-sfi-agreement-validate
   validationTopicAddress: ffc-sfi-agreement-validate-response
   validationSubscriptionAddress: ffc-sfi-agreement-validate-response-processing
+  crmCaseTopicAddress: ffc-sfi-crm-case-create
+  closeCrmCaseTopicAddress: ffc-sfi-crm-case-closed
+  closeCrmCaseSubscriptionAddress: ffc-sfi-crm-case-closed-processing'
 
 ingress:
   class: nginx

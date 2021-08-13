@@ -9,29 +9,39 @@ const mqSchema = joi.object({
     appInsights: joi.object()
   },
   submitSubscription: {
-    name: joi.string().default('ffc-sfi-agreement-submit'),
-    address: joi.string().default('ffc-sfi-agreement-submit'),
+    name: joi.string(),
+    address: joi.string(),
     topic: joi.string(),
     type: joi.string()
   },
   caseSubscription: {
-    name: joi.string().default('ffc-sfi-agreement-case'),
-    address: joi.string().default('ffc-sfi-agreement-case'),
+    name: joi.string(),
+    address: joi.string(),
     topic: joi.string(),
     type: joi.string()
   },
   paymentTopic: {
-    name: joi.string().default('ffc-sfi-payment-request'),
-    address: joi.string().default('ffc-sfi-payment-request'),
+    name: joi.string(),
+    address: joi.string(),
     type: joi.string()
   },
   validateTopic: {
-    name: joi.string().default('ffc-sfi-agreement-validate'),
-    address: joi.string().default('ffc-sfi-agreement-validate')
+    name: joi.string(),
+    address: joi.string()
   },
   validationResponseSubscription: {
-    name: joi.string().default('ffc-sfi-agreement-validate-response'),
-    address: joi.string().default('ffc-sfi-agreement-validate-response'),
+    name: joi.string(),
+    address: joi.string(),
+    topic: joi.string(),
+    type: joi.string()
+  },
+  createCrmCaseTopic: {
+    name: joi.string(),
+    address: joi.string()
+  },
+  closeCrmCaseSubscription: {
+    name: joi.string(),
+    address: joi.string(),
     topic: joi.string(),
     type: joi.string()
   }
@@ -69,6 +79,16 @@ const mqConfig = {
     address: process.env.VALIDATION_SUBSCRIPTION_ADDRESS,
     topic: process.env.VALIDATION_TOPIC_ADDRESS,
     type: 'subscription'
+  },
+  createCrmCaseTopic: {
+    name: process.env.CRMCASE_TOPIC_NAME,
+    address: process.env.CRMCASE_TOPIC_ADDRESS
+  },
+  closeCrmCaseSubscription: {
+    name: process.env.CLOSECRMCASE_SUBSCRIPTION_NAME,
+    address: process.env.CLOSECRMCASE_SUBSCRIPTION_ADDRESS,
+    topic: process.env.CLOSECRMCASE_TOPIC_ADDRESS,
+    type: 'subscription'
   }
 }
 
@@ -85,11 +105,15 @@ const caseSubscription = { ...mqResult.value.messageQueue, ...mqResult.value.cas
 const paymentTopic = { ...mqResult.value.messageQueue, ...mqResult.value.paymentTopic }
 const validateTopic = { ...mqResult.value.messageQueue, ...mqResult.value.validateTopic }
 const validationResponseSubscription = { ...mqResult.value.messageQueue, ...mqResult.value.validationResponseSubscription }
+const createCrmCaseTopic = { ...mqResult.value.messageQueue, ...mqResult.value.createCrmCaseTopic }
+const closeCrmCaseSubscription = { ...mqResult.value.messageQueue, ...mqResult.value.closeCrmCaseSubscription }
 
 module.exports = {
   submitSubscription,
   caseSubscription,
   paymentTopic,
   validateTopic,
-  validationResponseSubscription
+  validationResponseSubscription,
+  createCrmCaseTopic,
+  closeCrmCaseSubscription
 }

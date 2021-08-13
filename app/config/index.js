@@ -40,6 +40,8 @@ value.caseSubscription = mqConfig.caseSubscription
 value.paymentTopic = mqConfig.paymentTopic
 value.validateTopic = mqConfig.validateTopic
 value.validationResponseSubscription = mqConfig.validationResponseSubscription
+value.createCrmCaseTopic = mqConfig.createCrmCaseTopic
+value.closeCrmCaseSubscription = mqConfig.closeCrmCaseSubscription
 
 value.isDev = value.env === 'development'
 value.isTest = value.env === 'test'
