@@ -21,8 +21,7 @@ const config = {
   env: process.env.NODE_ENV,
   staticCacheTimeoutMillis: process.env.STATIC_CACHE_TIMEOUT_IN_MILLIS,
   googleTagManagerKey: process.env.GOOGLE_TAG_MANAGER_KEY,
-  paymentRequestPublishingInterval: process.env.PAYMENT_REQUEST_PUBLISHING_INTERVAL,
-  crmCloseCaseRequestPublishingInterval: process.env.CRM_CLOSE_CASE_REQUEST_PUBLISHING_INTERVAL
+  paymentRequestPublishingInterval: process.env.PAYMENT_REQUEST_PUBLISHING_INTERVAL
 }
 
 // Validate config
