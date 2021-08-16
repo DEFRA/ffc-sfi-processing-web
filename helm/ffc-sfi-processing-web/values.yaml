@@ -29,13 +29,17 @@ deployment:
   restartPolicy: Always
   priorityClassName: default
   replicas: 1
+  minReplicas: 2
+  maxReplicas: 4
+  cpuThreshold: 80
+  memoryThreshold: 80
   minReadySeconds: 0
 
 container:
   imagePullPolicy: IfNotPresent
-  requestMemory: 10Mi
-  requestCpu: 10m
-  limitMemory: 120Mi
+  requestMemory: 180Mi
+  requestCpu: 120m
+  limitMemory: 180Mi
   limitCpu: 120m
   port: 3006
   messageQueueHost: namespace.servicebus.windows.net
