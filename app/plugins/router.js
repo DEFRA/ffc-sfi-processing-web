@@ -5,8 +5,14 @@ const routes = [].concat(
   require('../routes/home'),
   require('../routes/tasks'),
   require('../routes/agreements'),
-  require('../routes/payment-requests')
+  require('../routes/payment-requests'),
+  require('../routes/authenticate'),
+  require('../routes/login'),
+  require('../routes/logout'),
+  require('../routes/testy')
 )
+
+console.log(routes)
 
 module.exports = {
   plugin: {

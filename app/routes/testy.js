@@ -1,8 +1,8 @@
 module.exports = {
   method: 'GET',
-  path: '/',
+  path: '/testy/test',
   handler: async (request, h) => {
-    console.log('HOME')
+    console.log('Testy test')
     console.log(request.auth.credentials)
 
     return h.view('home', {
