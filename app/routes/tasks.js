@@ -6,7 +6,6 @@ module.exports = [{
   path: '/tasks',
   options: {
     handler: async (request, h) => {
-      console.log(JSON.stringify(request.auth.credentials, null, 2))
       const tasks = await getTasks(request.query.agreementId)
       return h.view('tasks', { tasks })
     }
@@ -26,7 +25,6 @@ module.exports = [{
       }
     },
     handler: async (request, h) => {
-      console.log(JSON.stringify(request.auth.credentials, null, 2))
       await closeTask(request.payload.taskId)
       return h.redirect(`/tasks?agreementId=${request.payload.agreementId}`)
     }

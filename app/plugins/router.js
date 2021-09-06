@@ -8,11 +8,8 @@ const routes = [].concat(
   require('../routes/payment-requests'),
   require('../routes/authenticate'),
   require('../routes/login'),
-  require('../routes/logout'),
-  require('../routes/testy')
+  require('../routes/logout')
 )
-
-console.log(routes)
 
 module.exports = {
   plugin: {
