@@ -1,6 +1,7 @@
 const joi = require('joi')
 const mqConfig = require('./mq-config')
 const dbConfig = require('./db-config')
+const authConfig = require('./auth')
 
 // Define config schema
 const schema = joi.object({
@@ -48,5 +49,6 @@ value.isTest = value.env === 'test'
 value.isProd = value.env === 'production'
 
 value.dbConfig = dbConfig
+value.authConfig = authConfig
 
 module.exports = value

@@ -5,7 +5,10 @@ const routes = [].concat(
   require('../routes/home'),
   require('../routes/tasks'),
   require('../routes/agreements'),
-  require('../routes/payment-requests')
+  require('../routes/payment-requests'),
+  require('../routes/login'),
+  require('../routes/logout'),
+  require('../routes/authenticate')
 )
 
 module.exports = {

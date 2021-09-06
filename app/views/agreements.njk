@@ -52,7 +52,7 @@
                   <a href="/payment-requests?agreementId={{ agreement.agreementId }}" class="govuk-link">{{ agreement.paymentRequests.length }}</a>
                 </td>
                 <td class="govuk-table__cell">
-                  {% if not agreement.hasOpenTasks %}
+                  {% if not agreement.hasOpenTasks and permissions.approvePayments %}
                     <form method="POST" action="/agreement/pay">
                       <input type="hidden" name="crumb" value="{{crumb}}"/>
                       <input type="hidden" id="agreementId" name="agreementId" value="{{ agreement.agreementId }}">

@@ -1,9 +1,10 @@
 module.exports = {
   method: 'GET',
   path: '/',
-  options: {
-    handler: (request, h) => {
-      return h.view('home')
-    }
+  handler: (request, h) => {
+    return h.view('home', {
+      username: request.auth.credentials.account.username,
+      permissions: request.auth.credentials.permissions
+    })
   }
 }

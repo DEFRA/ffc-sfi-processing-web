@@ -1,10 +1,10 @@
 module.exports = {
   method: 'GET',
-  path: '/healthz',
+  path: '/login',
   options: {
     auth: false
   },
   handler: (request, h) => {
-    return h.response('ok').code(200)
+    return h.view('login')
   }
 }
