@@ -17,7 +17,7 @@ const msalClientApplication = new msal.ConfidentialClientApplication({
   system: { loggerOptions: msalLogging }
 })
 
-function getRedirectUrl () {
+function getAuthenticationUrl () {
   const authCodeUrlParameters = {
     prompt: 'select_account', // Force the MS account select dialog
     redirectUri: config.authConfig.redirectUrl
@@ -58,7 +58,7 @@ function logout (account) {
 }
 
 module.exports = {
-  getRedirectUrl,
+  getAuthenticationUrl,
   authenticate,
   refresh,
   logout

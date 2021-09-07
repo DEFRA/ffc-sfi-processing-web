@@ -19,8 +19,8 @@ module.exports = [
     },
     handler: async (request, h) => {
       try {
-        const redirectUrlCode = await azureAuth.getRedirectUrl()
-        return h.redirect(redirectUrlCode)
+        const authUrl = await azureAuth.getAuthenticationUrl()
+        return h.redirect(authUrl)
       } catch (err) {
         console.log('Error authenticating')
         console.log(JSON.stringify(err))
