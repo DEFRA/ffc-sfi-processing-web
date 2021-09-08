@@ -8,6 +8,7 @@ module.exports = {
   options: {
     validate: {
       query: Joi.object({
+        agreementId: Joi.number().optional(),
         page: Joi.number().greater(0).default(1),
         limit: Joi.number().greater(0).default(20)
       })
