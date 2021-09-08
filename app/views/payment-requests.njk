@@ -2,6 +2,7 @@
 
 {% from "govuk/components/breadcrumbs/macro.njk" import govukBreadcrumbs %}
 {% from "govuk/components/button/macro.njk" import govukButton %}
+{% import "./macros/pagination.njk" as pagination %}
 
 {% block beforeContent %}
   {{ govukBreadcrumbs({
@@ -45,6 +46,7 @@
           {% endfor %}
         </tbody>
       </table>
+      {{ pagination.pager(page, totalPages, paymentRequests.length, total, url) }}
       {% else %}
         <p class="govuk-body">No payment requests created</p>
       {% endif %}

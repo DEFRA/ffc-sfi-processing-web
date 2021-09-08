@@ -2,6 +2,7 @@
 
 {% from "govuk/components/breadcrumbs/macro.njk" import govukBreadcrumbs %}
 {% from "govuk/components/button/macro.njk" import govukButton %}
+{% import "./macros/pagination.njk" as pagination %}
 
 {% block beforeContent %}
   {{ govukBreadcrumbs({
@@ -64,26 +65,9 @@
             {% endfor %}
           </tbody>
         </table>
+        {{ pagination.pager(page, totalPages, agreements.length, total, url) }}
       {% else %}
         <p class="govuk-body">No submitted agreements</p>
       {% endif %}
-      <div class="govuk-grid-row">
-        <div class="govuk-grid-column-two-thirds">
-          <p class="govuk-body">
-            Page <strong>{{ page }}</strong> of <strong>{{ totalPages }}</strong>
-          </p>
-          <p class="govuk-body">Showing <strong>{{ agreements.length }}</strong> of <strong>{{ total }}</strong> results</p>
-        </div>
-        <div class="govuk-grid-column-one-third">
-          <p class="govuk-body">
-            {% if page > 1 %}
-              <a href="/agreements?page={{ page - 1 }}" class="govuk-link">Previous</a>
-            {% endif %}
-            {% if page < totalPages %}
-              <a href="/agreements?page={{ page + 1 }}" class="govuk-link">Next</a>
-            {% endif %}
-          </p>
-        </div>
-      </div>
     </div>
   {% endblock %}

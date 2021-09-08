@@ -8,14 +8,14 @@ module.exports = [{
   options: {
     validate: {
       query: Joi.object({
-        page: Joi.number().default(1),
-        limit: Joi.number().default(2)
+        page: Joi.number().greater(0).default(1),
+        limit: Joi.number().greater(0).default(20)
       })
     },
     handler: async (request, h) => {
       const { limit, offset } = getPagination(request.query.page, request.query.limit)
       const { agreements, total } = await getAgreements(undefined, limit, offset)
-      const pagingData = getPagingData(total, limit, request.query.page)
+      const pagingData = getPagingData(total, limit, request.query.page, request.headers.path)
       return h.view('agreements', { agreements, ...pagingData })
     }
   }

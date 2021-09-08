@@ -10,7 +10,6 @@ const getAgreements = async (agreementId, limit = 20, offset = 0) => {
     include: [{ model: db.task, as: 'tasks', include: { model: db.status, as: 'status' } }, { model: db.paymentRequest, as: 'paymentRequests' }],
     order: [['createdAt', 'DESC']]
   })
-
   return { agreements: rows, total: count }
 }
 
