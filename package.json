@@ -22,9 +22,7 @@
   "dependencies": {
     "@azure/identity": "^1.4.0",
     "@hapi/crumb": "^8.0.1",
-    "@hapi/good": "^9.0.1",
-    "@hapi/good-console": "^9.0.1",
-    "@hapi/good-squeeze": "^6.0.0",
+    "hapi-pino": "^8.3.0",
     "@hapi/hapi": "^20.1.0",
     "@hapi/inert": "^6.0.3",
     "@hapi/vision": "^6.1.0",
