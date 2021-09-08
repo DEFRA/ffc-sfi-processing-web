@@ -29,7 +29,7 @@ module.exports = [{
         taskId: Joi.number().required()
       }),
       failAction: async (request, h, error) => {
-        const tasks = await getTasks(request.payload.agreementId)
+        const { tasks } = await getTasks(request.payload.agreementId)
         return h.view('task', { tasks, error: true }).code(400).takeover()
       }
     },
