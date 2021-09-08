@@ -1,13 +1,22 @@
 const Joi = require('joi')
 const { getAgreements, payAgreement } = require('../agreements')
+const { getPagination, getPagingData } = require('../pagination')
 
 module.exports = [{
   method: 'GET',
   path: '/agreements',
   options: {
+    validate: {
+      query: Joi.object({
+        page: Joi.number().default(1),
+        limit: Joi.number().default(2)
+      })
+    },
     handler: async (request, h) => {
-      const agreements = await getAgreements()
-      return h.view('agreements', { agreements })
+      const { limit, offset } = getPagination(request.query.page, request.query.limit)
+      const { agreements, total } = await getAgreements(undefined, limit, offset)
+      const pagingData = getPagingData(total, limit, request.query.page)
+      return h.view('agreements', { agreements, ...pagingData })
     }
   }
 }, {
@@ -15,7 +24,7 @@ module.exports = [{
   path: '/agreement',
   options: {
     handler: async (request, h) => {
-      const agreements = await getAgreements(request.query.agreementId)
+      const { agreements } = await getAgreements(request.query.agreementId)
       return h.view('agreement', { agreements })
     }
   }
@@ -28,7 +37,7 @@ module.exports = [{
         agreementId: Joi.number().required()
       }),
       failAction: async (request, h, error) => {
-        const agreements = await getAgreements(request.payload.agreementId)
+        const { agreements } = await getAgreements(request.payload.agreementId)
         return h.view('agreements', { agreements, error: true }).code(400).takeover()
       }
     },
@@ -37,7 +46,7 @@ module.exports = [{
       if (readyToPay) {
         return h.redirect(`/payment-requests?agreementId=${request.payload.agreementId}`)
       }
-      const agreements = await getAgreements(request.payload.agreementId)
+      const { agreements } = await getAgreements(request.payload.agreementId)
       return h.view('agreements', { agreements, error: true }).code(400).takeover()
     }
   }
