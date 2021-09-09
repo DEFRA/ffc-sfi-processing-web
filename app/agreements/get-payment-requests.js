@@ -1,15 +1,19 @@
 const db = require('../data')
 
-async function getPaymentRequests (agreementId) {
+const getPaymentRequests = async (agreementId, limit = 20, offset = 0) => {
   const where = agreementId ? { agreementId } : {}
-  return db.paymentRequest.findAll({
+  const { count, rows } = await db.paymentRequest.findAndCountAll({
     where,
+    limit,
+    offset,
+    distinct: true, // needed to ensure sequelize returns the correct count when includes used
     include: [{ model: db.agreement, as: 'agreement' }],
     order: [['createdAt', 'DESC'], ['submitted']]
   })
+  return { paymentRequests: rows, total: count }
 }
 
-async function getPendingPayments () {
+const getPendingPayments = async () => {
   return db.paymentRequest.findAll({
     where: { submitted: null },
     raw: true
