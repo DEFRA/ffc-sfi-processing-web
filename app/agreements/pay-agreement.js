@@ -32,7 +32,7 @@ async function payAgreement (agreementId) {
 
 const createInvoiceLines = (standards) => {
   return standards.map(x => ({
-    standardCode: x.code,
+    standardCode: x.id,
     description: 'G00 - Gross value of claim',
     value: x.paymentAmount
   }))
