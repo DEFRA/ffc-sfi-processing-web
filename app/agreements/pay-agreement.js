@@ -23,15 +23,19 @@ async function payAgreement (agreementId) {
       schedule: 'M12',
       dueDate: moment().format('DD[/]MM[/]YYYY'),
       value: agreement.agreementData.paymentAmount,
-      invoiceLines: [{
-        standardCode: '80001',
-        description: 'G00 - Gross value of claim',
-        value: agreement.agreementData.paymentAmount
-      }]
+      invoiceLines: createInvoiceLines(agreement.agreementData.standards)
     }
   }
   await db.paymentRequest.create(paymentRequest)
   return true
+}
+
+const createInvoiceLines = (standards) => {
+  return standards.map(x => ({
+    standardCode: x.id,
+    description: 'G00 - Gross value of claim',
+    value: x.paymentAmount
+  }))
 }
 
 module.exports = payAgreement
