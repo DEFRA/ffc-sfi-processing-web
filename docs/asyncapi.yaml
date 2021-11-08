@@ -15,6 +15,9 @@ components:
       payload:
         type: object
         properties:
+          scheme:
+            type: string
+            description: Unique scheme code
           sbi:
             type: number
             description: Single Business Identifier
