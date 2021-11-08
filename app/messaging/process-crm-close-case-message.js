@@ -1,6 +1,6 @@
 async function processCrmCloseCase (message, receiver) {
   try {
-    console.info('Received close crm case')
+    console.info('Dynamics incident updated received', message.body)
     await receiver.completeMessage(message)
   } catch (err) {
     console.error('Unable to process message:', err)
