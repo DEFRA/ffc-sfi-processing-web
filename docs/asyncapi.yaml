@@ -7,6 +7,10 @@ channels:
     subscribe:
       message:
         $ref: '#/components/messages/AgreementSubmit'
+  case/validation:
+    publish:
+      message:
+        $ref: '#/components/messages/CaseValidation'
 
 components:
   messages:
@@ -69,5 +73,29 @@ components:
                             description: Unique action reference
                           value:
                             type: string
-                            description: Action intention 
+                            description: Action intention
+    CaseValidation:
+      contentType: application/json
+      payload:
+        type: object
+        properties:
+          scheme:
+            type: string
+            description: Unique scheme code
+          sbi:
+            type: number
+            description: Single Business Identifier
+          agreementNumber:
+            type: string
+            description: Unique agreement reference
+          incidentTypeId:
+            type: string
+            description: Unique incident reference
+          details:
+            type: object
+            description: Case details
+            properties:
+              correlationId:
+                type: string
+                description: GUID corresponding to validation message sent to Agreement Calculator
 
