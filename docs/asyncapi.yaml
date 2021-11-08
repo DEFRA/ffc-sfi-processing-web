@@ -1,0 +1,70 @@
+asyncapi: 2.2.0
+info:
+  title: FFC SFI Processing
+  version: '1.0.0'
+channels:
+  agreement/submit:
+    subscribe:
+      message:
+        $ref: '#/components/messages/AgreementSubmit'
+
+components:
+  messages:
+    AgreementSubmit:
+      contentType: application/json
+      payload:
+        type: object
+        properties:
+          sbi:
+            type: number
+            description: Single Business Identifier
+          agreementNumber:
+            type: string
+            description: Unique agreement reference
+          organisationId:
+            type: number
+            description: Unique organisation reference
+          agreement:
+            type: object
+            description: Agreement data
+            properties:
+              paymentAmount:
+                type: number
+                description: Overall value of agreement
+              standards:
+                type: array
+                description: List of Standards in agreement
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      description: Unique standard code
+                    paymentAmount:
+                      type: number
+                      description: Value of standard
+                    parcels:
+                      type: array
+                      description: List of parcels in standard
+                      items:
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                            description: Sheet reference and parcel Id
+                          area:
+                            type: number
+                            description: Area
+                    actions:
+                      type: array
+                      description: List of parcel actions
+                      items:
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                            description: Unique action reference
+                          value:
+                            type: string
+                            description: Action intention 
+

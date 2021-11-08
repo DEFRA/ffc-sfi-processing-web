@@ -6,7 +6,7 @@ const { createCrmCase } = require('../crm')
 
 async function processSubmitMessage (message, receiver) {
   try {
-    console.info('Received submitted agreement')
+    console.info('Received submitted agreement', message.body)
     const validationCorrelationId = uuidv4()
     await createAgreement(message.body, validationCorrelationId)
     await sendMessage({ ...message.body }, 'uk.gov.sfi.agreement.validate', validationCorrelationId, config.validateTopic)
