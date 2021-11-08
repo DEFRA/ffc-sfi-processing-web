@@ -17,7 +17,10 @@ async function processSubmitMessage (message, receiver) {
       sbi: message.body.sbi,
       agreementNumber: message.body.agreementNumber,
       incidentTypeId: 'validation',
-      description: 'Agreement validation requested'
+      description: 'Agreement validation requested',
+      details: {
+        correlationId: validationCorrelationId
+      }
     })
     await receiver.completeMessage(message)
   } catch (err) {
