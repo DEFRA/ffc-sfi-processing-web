@@ -15,6 +15,10 @@ channels:
     publish:
       message:
         $ref: '#/components/messages/CaseValidation'
+  case/closed:
+    publish:
+      message:
+        $ref: '#/components/messages/CaseClosed'
 
 components:
   messages:
@@ -102,4 +106,24 @@ components:
               correlationId:
                 type: string
                 description: GUID corresponding to validation message sent to Agreement Calculator
+    CaseClosed:
+      contentType: application/json
+      payload:
+        type: object
+        properties:
+          scheme:
+            type: string
+            description: Unique scheme code
+          sbi:
+            type: number
+            description: Single Business Identifier
+          agreementNumber:
+            type: string
+            description: Unique agreement reference
+          incidentTypeId:
+            type: string
+            description: Unique incident reference
+          remainingIncidents:
+            type: number
+            description: Number of remaining blocking incidents in Dynamics
 
