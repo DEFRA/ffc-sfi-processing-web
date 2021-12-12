@@ -8,9 +8,9 @@ async function createAgreement (agreement, validationCorrelationId) {
     const existingAgreement = await db.agreement.findOne({ where: { agreementNumber: agreement.agreementNumber }, transaction })
     if (!existingAgreement) {
       agreement.agreement.contractNumber = createContract(agreement.agreementNumber)
-      const createdAgreement = await db.agreement.create({ agreementNumber: agreement.agreementNumber, sbi: agreement.sbi, agreementData: agreement.agreement }, { transaction })
+      const createdAgreement = await db.agreement.create({ agreementNumber: agreement.agreementNumber, sbi: agreement.organisation.sbi, agreementData: agreement }, { transaction })
       await db.task.create({ taskTypeId: 1, agreementId: createdAgreement.agreementId, correlationId: validationCorrelationId }, { transaction })
-      if (agreement.agreement.paymentAmount > highValuePaymentThreshold) {
+      if (agreement.action.paymentAmount > highValuePaymentThreshold) {
         await db.task.create({ taskTypeId: 4, agreementId: createdAgreement.agreementId }, { transaction })
       }
     } else {
