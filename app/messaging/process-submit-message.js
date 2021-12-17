@@ -14,7 +14,7 @@ async function processSubmitMessage (message, receiver) {
     console.info(`Validation requested for ${message.body.agreementNumber}`)
     await createCrmCase({
       scheme: 'sfi',
-      sbi: message.body.sbi,
+      sbi: message.body.organisation.sbi,
       agreementNumber: message.body.agreementNumber,
       incidentTypeId: 'validation',
       description: 'Agreement validation requested',
