@@ -35,6 +35,7 @@ services:
       AZURE_CLIENT_SECRET: ${AZURE_CLIENT_SECRET}
       AZURE_CLIENT_ID: ${AZURE_CLIENT_ID}
       AZURE_TENANT_ID: ${AZURE_TENANT_ID}
+      REDIRECT_URL: ${REDIRECT_URL}
 
   ffc-sfi-processing-web-postgres:
     image: postgres:11.4-alpine
