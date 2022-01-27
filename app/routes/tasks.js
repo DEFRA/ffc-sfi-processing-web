@@ -1,13 +1,23 @@
 const Joi = require('joi')
 const { getTasks, closeTask } = require('../agreements')
+const { getPagination, getPagingData } = require('../pagination')
 
 module.exports = [{
   method: 'GET',
   path: '/tasks',
   options: {
+    validate: {
+      query: Joi.object({
+        agreementId: Joi.number().optional(),
+        page: Joi.number().greater(0).default(1),
+        limit: Joi.number().greater(0).default(20)
+      })
+    },
     handler: async (request, h) => {
-      const tasks = await getTasks(request.query.agreementId)
-      return h.view('tasks', { tasks })
+      const { limit, offset } = getPagination(request.query.page, request.query.limit)
+      const { tasks, total } = await getTasks(undefined, limit, offset)
+      const pagingData = getPagingData(total, limit, request.query.page, request.headers.path)
+      return h.view('tasks', { tasks, ...pagingData })
     }
   }
 }, {
@@ -20,7 +30,7 @@ module.exports = [{
         taskId: Joi.number().required()
       }),
       failAction: async (request, h, error) => {
-        const tasks = await getTasks(request.payload.agreementId)
+        const { tasks } = await getTasks(request.payload.agreementId)
         return h.view('task', { tasks, error: true }).code(400).takeover()
       }
     },
