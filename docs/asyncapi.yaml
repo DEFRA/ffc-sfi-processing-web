@@ -1,0 +1,129 @@
+asyncapi: 2.2.0
+info:
+  title: FFC SFI Processing
+  version: '1.0.0'
+channels:
+  agreement/submit:
+    subscribe:
+      message:
+        $ref: '#/components/messages/AgreementSubmit'
+  agreement/validation:
+    publish:
+      message:
+        $ref: '#/components/messages/AgreementSubmit'
+  case/validation:
+    publish:
+      message:
+        $ref: '#/components/messages/CaseValidation'
+  case/closed:
+    publish:
+      message:
+        $ref: '#/components/messages/CaseClosed'
+
+components:
+  messages:
+    AgreementSubmit:
+      contentType: application/json
+      payload:
+        type: object
+        properties:
+          scheme:
+            type: string
+            description: Unique scheme code
+          sbi:
+            type: number
+            description: Single Business Identifier
+          agreementNumber:
+            type: string
+            description: Unique agreement reference
+          organisationId:
+            type: number
+            description: Unique organisation reference
+          agreement:
+            type: object
+            description: Agreement data
+            properties:
+              paymentAmount:
+                type: number
+                description: Overall value of agreement
+              standards:
+                type: array
+                description: List of Standards in agreement
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      description: Unique standard code
+                    paymentAmount:
+                      type: number
+                      description: Value of standard
+                    parcels:
+                      type: array
+                      description: List of parcels in standard
+                      items:
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                            description: Sheet reference and parcel Id
+                          area:
+                            type: number
+                            description: Area
+                    actions:
+                      type: array
+                      description: List of parcel actions
+                      items:
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                            description: Unique action reference
+                          value:
+                            type: string
+                            description: Action intention
+    CaseValidation:
+      contentType: application/json
+      payload:
+        type: object
+        properties:
+          scheme:
+            type: string
+            description: Unique scheme code
+          sbi:
+            type: number
+            description: Single Business Identifier
+          agreementNumber:
+            type: string
+            description: Unique agreement reference
+          incidentTypeId:
+            type: string
+            description: Unique incident reference
+          details:
+            type: object
+            description: Case details
+            properties:
+              correlationId:
+                type: string
+                description: GUID corresponding to validation message sent to Agreement Calculator
+    CaseClosed:
+      contentType: application/json
+      payload:
+        type: object
+        properties:
+          scheme:
+            type: string
+            description: Unique scheme code
+          sbi:
+            type: number
+            description: Single Business Identifier
+          agreementNumber:
+            type: string
+            description: Unique agreement reference
+          incidentTypeId:
+            type: string
+            description: Unique incident reference
+          remainingIncidents:
+            type: number
+            description: Number of remaining blocking incidents in Dynamics
+

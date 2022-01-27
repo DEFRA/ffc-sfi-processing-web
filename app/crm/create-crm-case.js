@@ -5,7 +5,7 @@ const config = require('../config')
 const createCrmCase = async (crmCase) => {
   const crmCaseSender = new MessageSender(config.createCrmCaseTopic)
   await publishCrmCase(crmCase, crmCaseSender)
-  console.info(`CRM Create Case Sent: ${crmCase.agreementNumber}`)
+  console.info('Dynamics incident requested', crmCase)
 }
 
 module.exports = createCrmCase
