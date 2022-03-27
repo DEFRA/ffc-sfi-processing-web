@@ -18,27 +18,152 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
+      <h1 class="govuk-heading-l govuk-!-margin-bottom-0 govuk-!-padding-bottom-2">David Crossley & Sons Ltd</h1>
+      <p class="govuk-body">Application reference: {{ agreements[0].agreementNumber }}<br>
+      </p>
+      <strong class="govuk-tag govuk-tag--blue">Submitted</strong>
+      <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
+    </div>
+  </div>
 
-      {% if agreements.length %}
-        <span class="govuk-caption-l">{{ agreements[0].agreementNumber }}</span>
-        <h1 class="govuk-heading-l">Agreement summary</h1>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-one-third">
+      <ul class="govuk-list">
+        <li>
+          <a href="">Summary</a>
+        </li>
+        <li>
+          <a href="">Applications</a>
+        </li>
+        <li>
+          <a href="">Land details</a>
+        </li>
+        <li>
+          <a href="">Checks</a>
+        </li>
+        <li>
+          <a href="">Decisions</a>
+        </li>
+        <li>
+          <a href="">Payments</a>
+        </li>
+        <li>
+          <a href="">History / Notes</a>
+        </li>
+      </ul>
+    </div>
+    <div class="govuk-grid-column-two-thirds">
+      <dl class="govuk-summary-list  ">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            SBI number
+          </dt>
+            <dd class="govuk-summary-list__value">
+            {{ agreements[0].sbi }}
+          </dd>
+        </div>
 
-        <dl class="govuk-summary-list">
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">Agreement Number</dt>
-            <dd class="govuk-summary-list__value">{{ agreements[0].agreementNumber }}</dd>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Address
+          </dt>
+            <dd class="govuk-summary-list__value">
+            Mill Farm, Crosskeys Lane, Skipton, BD20 9HB
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Submitted on
+          </dt>
+            <dd class="govuk-summary-list__value">
+            5 April 2022
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Submitted by
+          </dt>
+            <dd class="govuk-summary-list__value">
+            David Crossley
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Contact email
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <a href="#">david.crossley@gmail.com</a>
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Value
+          </dt>
+            <dd class="govuk-summary-list__value">
+            £{{ agreements[0].agreementData.action['sfi-arable-soil'].paymentAmount }}
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Standards
+          </dt>
+            <dd class="govuk-summary-list__value">
+            Arable and horticultural soils
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Alerts 
+          </dt>
+            <dd class="govuk-summary-list__value">
+            None
+          </dd>
+        </div>
+      </dl>
+
+      {% if not agreements[0].hasOpenTasks %}
+        <form method="POST" action="/agreement/pay">
+          <input type="hidden" name="crumb" value="{{crumb}}"/>
+          <input type="hidden" id="agreementId" name="agreementId" value="{{ agreements[0].agreementId }}">
+          <div class="govuk-form-group">
+            <fieldset class="govuk-fieldset">
+              <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">  
+                Manage this application
+              </legend>
+              <div class="govuk-radios">
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="decision" name="decision" type="radio" value="approve">
+                  <label class="govuk-label govuk-radios__label" for="decision">
+                    Approve the application
+                  </label>
+                </div>
+
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="decision-2" name="decision" type="radio" value="reject">
+                  <label class="govuk-label govuk-radios__label" for="decision-2">
+                    Reject the application
+                  </label>
+                </div>
+
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="decision-3" name="decision" type="radio" value="hold">
+                  <label class="govuk-label govuk-radios__label" for="decision-3">
+                    Flag the application
+                  </label>
+                </div>
+              </div>
+            </fieldset>
           </div>
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">SBI</dt>
-            <dd class="govuk-summary-list__value">{{ agreements[0].sbi }}</dd>
-          </div>
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">Value</dt>
-            <dd class="govuk-summary-list__value">£{{ agreements[0].agreementData.action.paymentAmount }}</dd>
-          </div>
-        </dl>
-      {% else %}
-        <p class="govuk-body">Agreement not found</p>
+          <button class="govuk-button" data-module="govuk-button">
+            Continue
+          </button>
+        </form>
       {% endif %}
     </div>
   </div>

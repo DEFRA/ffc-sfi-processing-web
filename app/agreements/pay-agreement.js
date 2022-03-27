@@ -20,7 +20,7 @@ async function payAgreement (agreementId) {
       agreementNumber: agreement.agreementNumber,
       contractNumber: agreement.agreementData.contractNumber,
       currency: 'GBP',
-      schedule: 'M12',
+      schedule: 'Q4',
       dueDate: moment().format('DD[/]MM[/]YYYY'),
       value: agreement.agreementData.action.paymentAmount,
       invoiceLines: createInvoiceLines(agreement.agreementData.action)

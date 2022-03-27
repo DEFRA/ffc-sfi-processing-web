@@ -23,6 +23,12 @@ module.exports = (sequelize, DataTypes) => {
       get () {
         return this.tasks.some(x => x.statusId === 1)
       }
+    },
+    hasPaymentRequests: {
+      type: DataTypes.VIRTUAL,
+      get () {
+        return this.paymentRequests.length
+      }
     }
   },
   {
