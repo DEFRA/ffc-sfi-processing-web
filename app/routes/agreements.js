@@ -34,7 +34,8 @@ module.exports = [{
   options: {
     validate: {
       payload: Joi.object({
-        agreementId: Joi.number().required()
+        agreementId: Joi.number().required(),
+        decision: Joi.string().required()
       }),
       failAction: async (request, h, error) => {
         const { agreements } = await getAgreements(request.payload.agreementId)
