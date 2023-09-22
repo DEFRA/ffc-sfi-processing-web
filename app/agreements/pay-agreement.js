@@ -18,8 +18,8 @@ async function payAgreement (agreementId) {
       schemeId: 1,
       batch: undefined,
       deliveryBody: 'RP00',
-      invoiceNumber: '',
-      frn: '',
+      invoiceNumber: 'SFI0000001',
+      frn: '1000000001',
       sbi: agreement.sbi,
       marketingYear: 2022,
       paymentRequestNumber: agreement.paymentRequests.length + 1,
@@ -31,26 +31,28 @@ async function payAgreement (agreementId) {
       dueDate: moment().format('DD[/]MM[/]YYYY'),
       value: agreement.agreementData.action.paymentAmount,
       correlationId: uuidv4(),
-      invoiceLines: createInvoiceLines(agreement.agreementData.action)
+      invoiceLines: createInvoiceLines(agreement)
     }
   }
   await db.paymentRequest.create(paymentRequest)
   return true
 }
 
-const createInvoiceLines = (action) => {
+const createInvoiceLines = (agreement) => {
   const invoiceLines = []
-  for (const funding in action) {
+  const actions = agreement.agreementData.action
+  delete actions.paymentAmount
+  for (const funding in actions) {
     invoiceLines.push({
-      schemeCode: action[funding].code,
-      accountCode: '',
-      fundCode: '',
-      agreementNumber: '',
+      schemeCode: '80101',
+      accountCode: 'SOS273',
+      fundCode: 'DRD10',
+      agreementNumber: agreement.agreementNumber,
       description: 'G00 - Gross value of claim',
-      value: action[funding].paymentAmount,
+      value: actions[funding].paymentAmount,
       convergence: undefined,
-      deliveryBody: '',
-      marketingYear: ''
+      deliveryBody: 'RP00',
+      marketingYear: 2022
     })
   }
   return invoiceLines
