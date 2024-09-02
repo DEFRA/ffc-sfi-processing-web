@@ -29,7 +29,7 @@
     "@hapi/hoek": "11.0.2",
     "@hapi/inert": "7.1.0",
     "@hapi/vision": "7.0.3",
-    "applicationinsights": "2.1.8",
+    "applicationinsights": "2.9.5",
     "blipp": "4.0.2",
     "ffc-messaging": "2.7.0",
     "govuk-frontend": "3.14.0",
